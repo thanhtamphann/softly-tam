@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "provider": "ga4",
+  "measurementId": "",
+  "trackPageViews": true,
+  "trackArticleProgress": true,
+  "trackEngagedReaders": true,
+  "engagedSeconds": 30,
+  "progressMilestones": [25, 50, 75, 90, 100]
+}
