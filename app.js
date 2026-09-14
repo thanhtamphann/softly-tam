@@ -12,6 +12,7 @@ const fallback = {
 
 let data = fallback;
 let activeTopic = "All";
+let siteSettings = fallback.site;
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
@@ -28,6 +29,12 @@ function postCard(p){return `<article class="post-card reveal" data-category="${
 
 function renderSite(){
   const s={...fallback.site,...(data.site||{})};
+  siteSettings=s;
+  document.title=`${s.name} — Notes for a gentler life`;
+  const description=s.heroIntro || fallback.site.heroIntro;
+  document.querySelector('meta[name="description"]').content=description;
+  document.querySelector('meta[property="og:title"]').content=document.title;
+  document.querySelector('meta[property="og:description"]').content=description;
   $$('[data-site-name]').forEach(el=>el.textContent=s.name);
   $('[data-hero-eyebrow]').textContent=s.heroEyebrow; $('[data-hero-title]').textContent=s.heroTitle; $('[data-hero-intro]').textContent=s.heroIntro;
   if(s.profileImage){const img=$('[data-profile-image]');img.src=s.profileImage;img.alt=`Portrait of ${s.name}`;img.hidden=false;$('.portrait-placeholder').hidden=true}
@@ -53,6 +60,7 @@ function renderJournal(){
   const groups=activeTopic==='All'?(data.topics||[]).map(t=>t.name):[activeTopic];
   $('#topic-sections').innerHTML=groups.map(name=>{const items=posts.filter(p=>p.category===name); if(!items.length)return ''; const topic=topicFor(name);return `<section class="journal-group" style="--topic-color:${escapeHtml(topic.color)}"><div class="group-heading"><span>${escapeHtml(topic.icon)}</span><h3>${escapeHtml(name)}</h3><p>${items.length} ${items.length===1?'story':'stories'}</p></div><div class="post-grid">${items.map(postCard).join('')}</div></section>`}).join('');
   $('#empty-state').hidden=posts.length>0;
+  $('#result-count').textContent=`${posts.length} ${posts.length===1?'story':'stories'}${activeTopic==='All'?'':` in ${activeTopic}`}${query?` matching “${query}”`:''}`;
   $$('.filter-pill').forEach(b=>b.classList.toggle('active',b.dataset.topic===activeTopic)); reveal();
 }
 function bind(){
@@ -60,9 +68,11 @@ function bind(){
   $('#filter-pills').addEventListener('click',e=>{const b=e.target.closest('[data-topic]');if(!b)return;activeTopic=b.dataset.topic;renderJournal()});
   $('#topic-grid').addEventListener('click',e=>{const a=e.target.closest('[data-filter]');if(!a)return;activeTopic=a.dataset.filter;renderJournal()});
   $('.menu-toggle').onclick=()=>{const n=$('#site-nav');const open=n.classList.toggle('open');$('.menu-toggle').setAttribute('aria-expanded',open)};
-  $('#newsletter-form').onsubmit=e=>{e.preventDefault();showToast('Newsletter connection coming soon — thank you for being here ♡');e.target.reset()};
+  const newsletterButton=$('#newsletter-form button');
+  if(siteSettings.newsletterUrl){$('#newsletter-form').onsubmit=e=>{e.preventDefault();location.href=siteSettings.newsletterUrl}}
+  else{newsletterButton.type='button';newsletterButton.disabled=true;newsletterButton.textContent='Letters coming soon'}
 }
 function showToast(message){$('.toast').textContent=message;$('.toast').classList.add('show');setTimeout(()=>$('.toast').classList.remove('show'),3500)}
 function reveal(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){$$('.reveal').forEach(el=>el.classList.add('visible'));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.05});$$('.reveal:not(.visible)').forEach(el=>io.observe(el))}
-async function init(){try{const r=await fetch('content/site.json',{cache:'no-store'});if(r.ok)data=await r.json()}catch(e){}renderSite();renderFeatured();renderTopics();renderJournal();bind();reveal();$('#year').textContent=new Date().getFullYear()}
+async function init(){try{const r=await fetch(`content/site.json?fresh=${Date.now()}`,{cache:'no-store'});if(r.ok)data=await r.json()}catch(e){}renderSite();renderFeatured();renderTopics();renderJournal();bind();reveal();$('#year').textContent=new Date().getFullYear()}
 init();

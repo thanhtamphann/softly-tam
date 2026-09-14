@@ -8,12 +8,13 @@
     <meta property="og:description" content="Thoughtful writing about self-care, money, love, psychology, and becoming." />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#f7f0e6" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <title>Softly, Tam — Notes for a gentler life</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <script src="app.js?v=4" defer></script>
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -49,6 +50,7 @@
           <label class="search-box"><span>⌕</span><input id="post-search" type="search" placeholder="Search the journal…" aria-label="Search journal posts" /></label>
           <div class="filter-pills" id="filter-pills" aria-label="Filter articles by topic"></div>
         </div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
         <div id="topic-sections"></div>
         <p class="empty-state" id="empty-state" hidden>No stories found. Try another word or topic.</p>
       </section>
@@ -74,7 +76,7 @@
       <section class="disclaimer section-shell" id="disclaimer"><p><strong>A gentle note:</strong> Articles about money and psychology are shared for education and personal reflection only. They are not financial, medical, or mental-health advice.</p></section>
     </main>
 
-    <footer class="site-footer"><div><a class="brand" href="#top"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a><p data-footer-tagline>Thoughtful notes for a gentler, braver life.</p></div><div class="footer-links"><a href="#journal">Journal</a><a href="#about">About</a><a href="#disclaimer">Disclaimer</a><a data-social-instagram href="#">Instagram</a><a data-contact-email href="#">Email</a></div><p class="copyright">© <span id="year"></span> Tam Phan. Made with care.</p></footer>
+    <footer class="site-footer"><div><a class="brand" href="#top"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a><p data-footer-tagline>Thoughtful notes for a gentler, braver life.</p></div><div class="footer-links"><a href="#journal">Journal</a><a href="#about">About</a><a href="privacy.html">Privacy</a><a href="#disclaimer">Disclaimer</a><a data-social-instagram href="#">Instagram</a><a data-contact-email href="#">Email</a></div><p class="copyright">© <span id="year"></span> Tam Phan. Made with care.</p></footer>
     <div class="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

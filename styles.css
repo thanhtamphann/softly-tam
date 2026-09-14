@@ -12,3 +12,6 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee div{animation:none}.reveal{opacity:1;transform:none;transition:none}}
 @media(max-width:900px){.journal-tools{align-items:flex-start;flex-direction:column}.filter-pills{justify-content:flex-start}.contact-inner{grid-template-columns:1fr;gap:35px}.featured-card .post-art{border-right:0}.site-header nav{max-height:calc(100vh - 84px);overflow:auto}}
 @media(max-width:600px){.filter-pills{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:6px}.filter-pill{flex:0 0 auto}.group-heading{grid-template-columns:auto 1fr}.group-heading p{display:none}.journal-group{padding-block:38px}.contact-strip{padding:65px 0}.contact-strip h2{font-size:42px}}
+
+/* Reliable content updates and clearer interaction states */
+[hidden]{display:none!important}.site-header{position:sticky;top:0;background:rgba(251,247,240,.92);backdrop-filter:blur(14px);z-index:15}.result-count{margin:-20px 0 24px;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase}.newsletter button:disabled{opacity:.55;cursor:not-allowed}.search-box:focus-within{border-color:var(--coral)}.filter-pill:focus-visible,.read-link:focus-visible,.button:focus-visible{outline:3px solid rgba(217,129,104,.35);outline-offset:3px}

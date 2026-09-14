@@ -37,6 +37,7 @@ content:
           - { name: contactText, label: Contact section message, type: text }
           - { name: newsletterTitle, label: Newsletter heading, type: string }
           - { name: newsletterText, label: Newsletter description, type: text }
+          - { name: newsletterUrl, label: Newsletter signup URL, type: string, description: Add your Substack, Mailchimp or Buttondown signup link. Leave blank to show Coming soon. }
           - { name: footerTagline, label: Footer tagline, type: string }
           - { name: email, label: Contact email, type: string }
           - { name: instagram, label: Instagram URL, type: string }
