@@ -30,13 +30,13 @@ const readingTime = p => {
   const words=articleText.trim().split(/\s+/).filter(Boolean).length;
   return `${Math.max(1,Math.ceil(words/220))} min read`;
 };
+
 function prepareHeroAnimation(){
-  const hero=$('.hero'); const title=$('[data-hero-title]');
+  const hero=$('.editorial-intro'); const title=$('[data-hero-title]');
   if(!hero||!title)return;
   const words=title.textContent.trim().split(/\s+/);
   title.setAttribute('aria-label',words.join(' '));
   title.innerHTML=words.map((word,index)=>`<span class="hero-word" style="--word-index:${index}" aria-hidden="true">${escapeHtml(word)}</span>`).join(' ');
-  hero.classList.add('hero-animate');
   requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('is-entered')));
 }
 
@@ -45,7 +45,6 @@ function postArt(p){
   return p.image ? `<a class="post-art" href="${postUrl(p)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy"></a>` : `<a class="post-art" style="--post-color:${escapeHtml(color)}" href="${postUrl(p)}" aria-label="Read ${escapeHtml(p.title)}"><span class="art-shape a"></span><span class="art-shape b"></span><span class="art-line"></span><span class="art-topic">${escapeHtml(topic.icon)}</span></a>`;
 }
 function meta(p, includeDate=true){return `<div class="post-meta"><span>${escapeHtml(p.category)}</span>${includeDate&&p.date?`<span>${escapeHtml(displayDate(p.date))}</span>`:""}<span>${escapeHtml(readingTime(p))}</span></div>`}
-function postCard(p){const topic=topicFor(p.category);const color=p.color||topic.color;return `<article class="post-card reveal" data-category="${escapeHtml(p.category)}" style="--card-color:${escapeHtml(color)}">${postArt(p)}<div class="post-copy">${meta(p)}<h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}"><span>Read the story</span><b aria-hidden="true">↗</b></a></div></article>`}
 
 function renderSite(){
   const s={...fallback.site,...(data.site||{})};
@@ -57,44 +56,83 @@ function renderSite(){
   document.querySelector('meta[property="og:description"]').content=description;
   $$('[data-site-name]').forEach(el=>el.textContent=s.name);
   $$('[data-author-name]').forEach(el=>el.textContent=s.authorName || 'Tam Phan');
-  $('[data-hero-eyebrow]').textContent=s.heroEyebrow; $('[data-hero-title]').textContent=s.heroTitle; $('[data-hero-intro]').textContent=s.heroIntro;
-  if(s.profileImage){const img=$('[data-profile-image]');img.src=s.profileImage;img.alt=`Portrait of ${s.name}`;img.hidden=false;$('.portrait-placeholder').hidden=true}
-  const aboutParts=(s.aboutTitle||'').split('. '); $('[data-about-title]').innerHTML=`${escapeHtml(aboutParts.shift()||'')}.${aboutParts.length?`<br><em>${escapeHtml(aboutParts.join('. '))}</em>`:''}`;
+  $('[data-hero-eyebrow]').textContent=s.heroEyebrow;
+  $('[data-hero-title]').textContent=s.heroTitle;
+  $('[data-hero-intro]').textContent=s.heroIntro;
+  if(s.profileImage){const img=$('[data-profile-image]');if(img){img.src=s.profileImage;img.alt=`Portrait of ${s.name}`;img.hidden=false}}
+  const aboutParts=(s.aboutTitle||'').split('. ');
+  $('[data-about-title]').innerHTML=`${escapeHtml(aboutParts.shift()||'')}.${aboutParts.length?`<br><em>${escapeHtml(aboutParts.join('. '))}</em>`:''}`;
   $('[data-about-body]').innerHTML=(s.aboutBody||[]).map(x=>`<p>${escapeHtml(x)}</p>`).join('');
   $('[data-contact-text]').textContent=s.contactText || fallback.site.contactText;
-  $('[data-newsletter-title]').textContent=s.newsletterTitle; $('[data-newsletter-text]').textContent=s.newsletterText; $('[data-footer-tagline]').textContent=s.footerTagline;
-  $$('[data-contact-email]').forEach(el=>{if(s.email){el.href=`mailto:${s.email}`}else{el.hidden=true}});
-  if(s.instagram){$('[data-social-instagram]').href=s.instagram}else{$('[data-social-instagram]').hidden=true}
+  $('[data-newsletter-title]').textContent=s.newsletterTitle;
+  $('[data-newsletter-text]').textContent=s.newsletterText;
+  $('[data-footer-tagline]').textContent=s.footerTagline;
+  $$('[data-contact-email]').forEach(el=>{if(s.email){el.href=`mailto:${s.email}`;el.hidden=false}else{el.hidden=true}});
+  const insta=$('[data-social-instagram]'); if(insta){if(s.instagram){insta.href=s.instagram;insta.hidden=false}else{insta.hidden=true}}
 }
-function renderFeatured(){
-  const posts=data.posts||[]; const fi=Math.max(0,posts.findIndex(p=>p.featured)); const p=posts[fi];
-  if(!p){$('#featured-post').hidden=true;return}
-  const topic=topicFor(p.category); const color=p.color||topic.color;
-  $('#featured-post').innerHTML=`<article class="featured-card reveal" style="--card-color:${escapeHtml(color)}"><span class="featured-label">Featured essay</span>${postArt(p)}<div class="post-copy">${meta(p)}<p class="author-line">By ${escapeHtml(p.author||siteSettings.authorName||'Tam Phan')}</p><h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}"><span>Read the story</span><b aria-hidden="true">↗</b></a></div></article>`;
+
+function renderFrontPage(){
+  const posts=[...(data.posts||[])];
+  if(!posts.length){$('#front-page-lead').innerHTML='';return}
+  const featuredIndex=Math.max(0,posts.findIndex(p=>p.featured));
+  const lead=posts.splice(featuredIndex,1)[0];
+  const rail=posts.slice(0,3);
+  const leadHtml=`<article class="lead-story reveal">${postArt(lead)}${meta(lead)}<h2><a href="${postUrl(lead)}">${escapeHtml(lead.title)}</a></h2><p class="lead-excerpt">${escapeHtml(lead.excerpt)}</p><p class="byline">By ${escapeHtml(lead.author||siteSettings.authorName||'Tam Phan')}</p></article>`;
+  const railHtml=`<aside class="front-page-rail">${rail.map((p,i)=>`<article class="rail-story reveal">${i===0?postArt(p):''}${meta(p)}<h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p></article>`).join('')}</aside>`;
+  $('#front-page-lead').innerHTML=leadHtml+railHtml;
 }
+
 function renderTopics(){
   $('#topic-grid').innerHTML=(data.topics||[]).map(t=>`<a class="topic-card reveal" style="--topic-color:${escapeHtml(t.color||'#dfc4a9')}" href="#journal" data-filter="${escapeHtml(t.name)}"><span class="topic-icon">${escapeHtml(t.icon)}</span><div><h3>${escapeHtml(t.name)}</h3><p>${escapeHtml(t.note)}</p></div></a>`).join('');
   $('#filter-pills').innerHTML=['All',...(data.topics||[]).map(t=>t.name)].map(name=>`<button class="filter-pill${name==='All'?' active':''}" data-topic="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join('');
 }
+
+function sectionLead(p){return `<article class="section-lead-story reveal">${postArt(p)}<div>${meta(p)}<h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}">Read the story <span>↗</span></a></div></article>`}
+function compactStory(p){return `<article class="compact-story reveal">${meta(p)}<h4><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h4><p>${escapeHtml(p.excerpt)}</p></article>`}
+
 function renderJournal(){
-  const query=($('#post-search').value||'').trim().toLowerCase(); const featured=(data.posts||[]).find(p=>p.featured);
+  const query=($('#post-search').value||'').trim().toLowerCase();
+  const featured=(data.posts||[]).find(p=>p.featured);
   const posts=(data.posts||[]).filter(p=>p!==featured).filter(p=>(activeTopic==='All'||p.category===activeTopic)&&(!query||`${p.title} ${p.excerpt} ${(p.tags||[]).join(' ')}`.toLowerCase().includes(query)));
   const groups=activeTopic==='All'?(data.topics||[]).map(t=>t.name):[activeTopic];
-  $('#topic-sections').innerHTML=groups.map(name=>{const items=posts.filter(p=>p.category===name); if(!items.length)return ''; const topic=topicFor(name);return `<section class="journal-group" style="--topic-color:${escapeHtml(topic.color)}"><div class="group-heading"><span>${escapeHtml(topic.icon)}</span><div><h3>${escapeHtml(name)}</h3><small>${escapeHtml(topic.note||'Thoughtful notes and practical ideas')}</small></div><p>${items.length} ${items.length===1?'story':'stories'}</p></div><div class="post-grid" data-count="${items.length}">${items.map(postCard).join('')}</div></section>`}).join('');
+  $('#topic-sections').innerHTML=groups.map(name=>{
+    const items=posts.filter(p=>p.category===name);
+    if(!items.length)return '';
+    const topic=topicFor(name);
+    const lead=items[0]; const rest=items.slice(1);
+    return `<section class="journal-group" style="--topic-color:${escapeHtml(topic.color)}"><div class="group-heading"><span>${escapeHtml(topic.icon)}</span><div><h3>${escapeHtml(name)}</h3><small>${escapeHtml(topic.note||'Thoughtful notes and practical ideas')}</small></div><p>${items.length} ${items.length===1?'story':'stories'}</p></div><div class="newspaper-section-grid">${sectionLead(lead)}<div class="section-story-list">${rest.map(compactStory).join('')}</div></div></section>`
+  }).join('');
   $('#empty-state').hidden=posts.length>0;
   $('#result-count').textContent=`${posts.length} ${posts.length===1?'story':'stories'}${activeTopic==='All'?'':` in ${activeTopic}`}${query?` matching “${query}”`:''}`;
-  $$('.filter-pill').forEach(b=>b.classList.toggle('active',b.dataset.topic===activeTopic)); reveal();
+  $$('.filter-pill').forEach(b=>b.classList.toggle('active',b.dataset.topic===activeTopic));
+  reveal();
 }
+
 function bind(){
   $('#post-search').addEventListener('input',renderJournal);
   $('#filter-pills').addEventListener('click',e=>{const b=e.target.closest('[data-topic]');if(!b)return;activeTopic=b.dataset.topic;renderJournal()});
   $('#topic-grid').addEventListener('click',e=>{const a=e.target.closest('[data-filter]');if(!a)return;activeTopic=a.dataset.filter;renderJournal()});
-  $('.menu-toggle').onclick=()=>{const n=$('#site-nav');const open=n.classList.toggle('open');$('.menu-toggle').setAttribute('aria-expanded',open)};
+  const menu=$('.menu-toggle'); if(menu)menu.onclick=()=>{const n=$('#site-nav');const open=n.classList.toggle('open');menu.setAttribute('aria-expanded',open)};
   const newsletterButton=$('#newsletter-form button');
   if(siteSettings.newsletterUrl){$('#newsletter-form').onsubmit=e=>{e.preventDefault();location.href=siteSettings.newsletterUrl}}
   else{newsletterButton.type='button';newsletterButton.disabled=true;newsletterButton.textContent='Letters coming soon'}
 }
-function showToast(message){$('.toast').textContent=message;$('.toast').classList.add('show');setTimeout(()=>$('.toast').classList.remove('show'),3500)}
-function reveal(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){$$('.reveal').forEach(el=>el.classList.add('visible'));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.05});$$('.reveal:not(.visible)').forEach(el=>io.observe(el))}
-async function init(){try{const r=await fetch(`content/site.json?fresh=${Date.now()}`,{cache:'no-store'});if(r.ok)data=await r.json()}catch(e){}renderSite();prepareHeroAnimation();renderFeatured();renderTopics();renderJournal();bind();reveal();$('#year').textContent=new Date().getFullYear()}
+
+function reveal(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){$$('.reveal').forEach(el=>el.classList.add('visible'));return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.05});
+  $$('.reveal:not(.visible)').forEach(el=>io.observe(el));
+}
+
+async function init(){
+  try{const r=await fetch(`content/site.json?fresh=${Date.now()}`,{cache:'no-store'});if(r.ok)data=await r.json()}catch(e){}
+  renderSite();
+  prepareHeroAnimation();
+  renderFrontPage();
+  renderTopics();
+  renderJournal();
+  bind();
+  reveal();
+  $('#year').textContent=new Date().getFullYear();
+}
 init();
