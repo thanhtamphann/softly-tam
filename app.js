@@ -36,7 +36,7 @@ function postArt(p){
   return p.image ? `<a class="post-art" href="${postUrl(p)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy"></a>` : `<a class="post-art" style="--post-color:${escapeHtml(color)}" href="${postUrl(p)}" aria-label="Read ${escapeHtml(p.title)}"><span class="art-shape a"></span><span class="art-shape b"></span><span class="art-line"></span><span class="art-topic">${escapeHtml(topic.icon)}</span></a>`;
 }
 function meta(p, includeDate=true){return `<div class="post-meta"><span>${escapeHtml(p.category)}</span>${includeDate&&p.date?`<span>${escapeHtml(displayDate(p.date))}</span>`:""}<span>${escapeHtml(readingTime(p))}</span></div>`}
-function postCard(p){return `<article class="post-card reveal" data-category="${escapeHtml(p.category)}">${postArt(p)}<div class="post-copy">${meta(p)}<h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}">Read the story →</a></div></article>`}
+function postCard(p){const topic=topicFor(p.category);const color=p.color||topic.color;return `<article class="post-card reveal" data-category="${escapeHtml(p.category)}" style="--card-color:${escapeHtml(color)}">${postArt(p)}<div class="post-copy">${meta(p)}<h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}"><span>Read the story</span><b aria-hidden="true">↗</b></a></div></article>`}
 
 function renderSite(){
   const s={...fallback.site,...(data.site||{})};
@@ -60,7 +60,8 @@ function renderSite(){
 function renderFeatured(){
   const posts=data.posts||[]; const fi=Math.max(0,posts.findIndex(p=>p.featured)); const p=posts[fi];
   if(!p){$('#featured-post').hidden=true;return}
-  $('#featured-post').innerHTML=`<article class="featured-card reveal">${postArt(p)}<div class="post-copy">${meta(p)}<p class="author-line">By ${escapeHtml(p.author||siteSettings.authorName||'Tam Phan')}</p><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}">Read the story →</a></div></article>`;
+  const topic=topicFor(p.category); const color=p.color||topic.color;
+  $('#featured-post').innerHTML=`<article class="featured-card reveal" style="--card-color:${escapeHtml(color)}"><span class="featured-label">Featured essay</span>${postArt(p)}<div class="post-copy">${meta(p)}<p class="author-line">By ${escapeHtml(p.author||siteSettings.authorName||'Tam Phan')}</p><h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}"><span>Read the story</span><b aria-hidden="true">↗</b></a></div></article>`;
 }
 function renderTopics(){
   $('#topic-grid').innerHTML=(data.topics||[]).map(t=>`<a class="topic-card reveal" style="--topic-color:${escapeHtml(t.color||'#dfc4a9')}" href="#journal" data-filter="${escapeHtml(t.name)}"><span class="topic-icon">${escapeHtml(t.icon)}</span><div><h3>${escapeHtml(t.name)}</h3><p>${escapeHtml(t.note)}</p></div></a>`).join('');
@@ -70,7 +71,7 @@ function renderJournal(){
   const query=($('#post-search').value||'').trim().toLowerCase(); const featured=(data.posts||[]).find(p=>p.featured);
   const posts=(data.posts||[]).filter(p=>p!==featured).filter(p=>(activeTopic==='All'||p.category===activeTopic)&&(!query||`${p.title} ${p.excerpt} ${(p.tags||[]).join(' ')}`.toLowerCase().includes(query)));
   const groups=activeTopic==='All'?(data.topics||[]).map(t=>t.name):[activeTopic];
-  $('#topic-sections').innerHTML=groups.map(name=>{const items=posts.filter(p=>p.category===name); if(!items.length)return ''; const topic=topicFor(name);return `<section class="journal-group" style="--topic-color:${escapeHtml(topic.color)}"><div class="group-heading"><span>${escapeHtml(topic.icon)}</span><h3>${escapeHtml(name)}</h3><p>${items.length} ${items.length===1?'story':'stories'}</p></div><div class="post-grid">${items.map(postCard).join('')}</div></section>`}).join('');
+  $('#topic-sections').innerHTML=groups.map(name=>{const items=posts.filter(p=>p.category===name); if(!items.length)return ''; const topic=topicFor(name);return `<section class="journal-group" style="--topic-color:${escapeHtml(topic.color)}"><div class="group-heading"><span>${escapeHtml(topic.icon)}</span><div><h3>${escapeHtml(name)}</h3><small>${escapeHtml(topic.note||'Thoughtful notes and practical ideas')}</small></div><p>${items.length} ${items.length===1?'story':'stories'}</p></div><div class="post-grid" data-count="${items.length}">${items.map(postCard).join('')}</div></section>`}).join('');
   $('#empty-state').hidden=posts.length>0;
   $('#result-count').textContent=`${posts.length} ${posts.length===1?'story':'stories'}${activeTopic==='All'?'':` in ${activeTopic}`}${query?` matching “${query}”`:''}`;
   $$('.filter-pill').forEach(b=>b.classList.toggle('active',b.dataset.topic===activeTopic)); reveal();
