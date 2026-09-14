@@ -1,184 +1,351 @@
 media:
-  - name: blog_images
-    label: Blog images
+  - name: media
+    label: Media Library
     input: assets/images
     output: /softly-tam/assets/images
-    extensions: [jpg, jpeg, png, webp, gif, svg]
-    categories: [image]
+    extensions: [jpg, jpeg, png, webp, gif, svg, pdf]
+    categories: [image, document]
     rename: safe
 
 content:
-  - name: website
-    label: Website content
+  - name: control
+    label: 01 Website Control Center
+    type: file
+    path: content/control.json
+    format: json
+    fields:
+      - name: site
+        label: Site Settings
+        type: object
+        fields:
+          - { name: name, label: Website name, type: string, required: true }
+          - { name: authorName, label: Author name, type: string }
+          - { name: tagline, label: Footer tagline, type: string }
+          - name: logoImage
+            label: Website logo
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp, svg], rename: safe }
+          - name: favicon
+            label: Browser tab icon / favicon
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp, svg], rename: safe }
+          - name: profileImage
+            label: Profile image
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: email, label: Main email, type: string }
+          - name: cvPdf
+            label: Resume / CV PDF
+            type: file
+            options: { media: media, extensions: [pdf], rename: safe }
+          - name: defaultLanguage
+            label: Default language
+            type: select
+            options:
+              values: [en, vi]
+      - name: announcement
+        label: Announcement Bar
+        type: object
+        fields:
+          - { name: enabled, label: Show announcement, type: boolean }
+          - { name: text, label: Message, type: string }
+          - { name: linkLabel, label: Link label, type: string }
+          - { name: url, label: Link, type: string }
+          - { name: newTab, label: Open in new tab, type: boolean }
+      - name: menu
+        label: Navigation Menu
+        type: object
+        description: Add, delete or drag items to reorder the menu.
+        list:
+          collapsible: { collapsed: true, summary: "{label}" }
+        fields:
+          - { name: label, label: Menu label, type: string, required: true }
+          - { name: url, label: Link, type: string, required: true }
+          - { name: enabled, label: Show item, type: boolean, default: true }
+          - { name: newTab, label: Open in new tab, type: boolean }
+      - name: ctaButtons
+        label: Global CTA Buttons
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{label}" }
+        fields:
+          - { name: label, label: Button text, type: string, required: true }
+          - { name: url, label: Link, type: string, required: true }
+          - name: style
+            label: Style
+            type: select
+            options:
+              values: [primary, secondary, text]
+          - { name: enabled, label: Show button, type: boolean, default: true }
+          - { name: newTab, label: Open in new tab, type: boolean }
+      - name: homepage
+        label: Homepage
+        type: object
+        fields:
+          - { name: heroEyebrow, label: Hero eyebrow, type: string }
+          - { name: heroTitle, label: Hero title, type: text }
+          - { name: heroIntro, label: Hero introduction, type: text }
+          - name: sections
+            label: Homepage sections
+            type: object
+            description: Drag to reorder. Toggle Enabled to show/hide a section.
+            list:
+              collapsible: { collapsed: true, summary: "{label}" }
+            fields:
+              - { name: id, label: Section ID, type: string, readonly: true }
+              - { name: label, label: Admin label, type: string }
+              - { name: enabled, label: Enabled, type: boolean, default: true }
+              - { name: order, label: Order, type: number }
+      - name: contact
+        label: Contact
+        type: object
+        fields:
+          - { name: heading, label: Contact heading, type: text }
+          - { name: text, label: Contact text, type: text }
+          - { name: formEnabled, label: Enable contact form, type: boolean, default: true }
+          - { name: recipientEmail, label: Form recipient email, type: string }
+          - name: channels
+            label: Contact & Social Channels
+            type: object
+            description: Add Telegram, Facebook, Instagram, TikTok, WhatsApp, LinkedIn, YouTube, Discord, Threads, email, phone or any future platform.
+            list:
+              collapsible: { collapsed: true, summary: "{label}" }
+            fields:
+              - { name: label, label: Channel name, type: string, required: true }
+              - { name: icon, label: Icon / short symbol, type: string }
+              - { name: url, label: Link, type: string }
+              - { name: note, label: Username / note, type: string }
+              - { name: enabled, label: Enabled, type: boolean, default: true }
+              - { name: showInContact, label: Show in Contact, type: boolean, default: true }
+              - { name: showInFooter, label: Show in Footer, type: boolean, default: true }
+              - { name: newTab, label: Open in new tab, type: boolean, default: true }
+      - name: design
+        label: Design & Motion
+        type: object
+        fields:
+          - name: theme
+            label: Theme
+            type: select
+            options:
+              values:
+                - { name: original, label: Original }
+                - { name: minimal, label: Minimal }
+                - { name: editorial, label: Editorial }
+                - { name: dark, label: Dark }
+          - name: defaultMode
+            label: Default color mode
+            type: select
+            options:
+              values: [light, dark]
+          - { name: allowVisitorDarkMode, label: Show Light/Dark switch to visitors, type: boolean }
+          - { name: primaryColor, label: Primary text color, type: string }
+          - { name: backgroundColor, label: Background color, type: string }
+          - { name: surfaceColor, label: Surface color, type: string }
+          - { name: accentColor, label: Accent color, type: string }
+          - { name: mutedColor, label: Muted text color, type: string }
+          - name: animation
+            label: Animation style
+            type: select
+            options:
+              values: [none, subtle, strong, slide, fade, zoom]
+          - name: animationSpeed
+            label: Animation speed
+            type: select
+            options:
+              values: [slow, normal, fast]
+      - name: seo
+        label: SEO & Sharing
+        type: object
+        fields:
+          - { name: siteTitle, label: Site / Google title, type: string }
+          - { name: metaDescription, label: Meta description, type: text }
+          - name: socialImage
+            label: Default social sharing image
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: canonicalUrl, label: Canonical website URL, type: string }
+          - { name: twitterHandle, label: X / Twitter handle, type: string }
+
+  - name: projects
+    label: 02 Projects & Videos
+    type: file
+    path: content/projects.json
+    format: json
+    fields:
+      - name: projects
+        label: Projects
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: slug, label: Slug, type: string, required: true }
+          - { name: title, label: Title, type: string, required: true }
+          - { name: category, label: Category, type: string }
+          - { name: description, label: Description, type: text }
+          - name: thumbnail
+            label: Thumbnail
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - name: gallery
+            label: Gallery images
+            type: image
+            list: true
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: videoUrl, label: Video URL, type: string }
+          - { name: views, label: Views, type: string }
+          - { name: likes, label: Likes / engagement, type: string }
+          - { name: ctaLabel, label: CTA text, type: string }
+          - { name: ctaUrl, label: CTA URL, type: string }
+          - { name: color, label: Accent color, type: string }
+          - { name: featured, label: Featured, type: boolean }
+          - { name: published, label: Published, type: boolean, default: true }
+          - { name: order, label: Order, type: number }
+
+  - name: blog
+    label: 03 Blog
     type: file
     path: content/site.json
     format: json
     fields:
-      - name: site
-        label: Brand, introduction & contact
-        type: object
-        fields:
-          - { name: name, label: Website name, type: string, required: true }
-          - { name: authorName, label: Author name, type: string, default: Tam Phan, description: Used on every article and in the footer when a post author is left blank. }
-          - name: logoImage
-            label: Website logo
-            type: image
-            description: Optional. Upload a logo to replace the default S mark in the header and footer. Delete/clear it any time to return to the default mark.
-            options:
-              media: blog_images
-              extensions: [jpg, jpeg, png, webp, svg]
-              rename: safe
-          - name: favicon
-            label: Browser tab icon / favicon
-            type: image
-            description: Optional. Upload a square icon. Clear it any time to use the default Softly, Tam S icon.
-            options:
-              media: blog_images
-              extensions: [jpg, jpeg, png, webp, svg]
-              rename: safe
-          - { name: heroEyebrow, label: Small line above heading, type: string }
-          - { name: heroTitle, label: Main heading, type: text, required: true }
-          - { name: heroIntro, label: Short introduction, type: text, required: true }
-          - name: profileImage
-            label: Your portrait
-            type: image
-            options:
-              media: blog_images
-              extensions: [jpg, jpeg, png, webp]
-              rename: safe
-          - { name: aboutTitle, label: About heading, type: text }
-          - name: aboutBody
-            label: About paragraphs
-            type: text
-            list: true
-          - { name: contactText, label: Contact section message, type: text }
-          - { name: newsletterTitle, label: Newsletter heading, type: string }
-          - { name: newsletterText, label: Newsletter description, type: text }
-          - { name: newsletterUrl, label: Newsletter signup URL, type: string, description: Add your Substack, Mailchimp or Buttondown signup link. Leave blank to show Coming soon. }
-          - { name: footerTagline, label: Footer tagline, type: string }
-          - { name: email, label: Contact form recipient email, type: string, description: Messages submitted through the website contact form are sent to this address. }
-          - name: contactChannels
-            label: Contact & social channels
-            type: object
-            description: Add any contact channel without editing code. Examples: Telegram, Facebook, Instagram, TikTok, Messenger, WhatsApp, LinkedIn, YouTube, Discord, Threads, email or your own community. Leave URL blank or disable an item to hide it.
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{label}"
-            fields:
-              - { name: label, label: Channel name, type: string, required: true }
-              - { name: icon, label: Icon / short symbol, type: string, description: Optional. Examples: ✈ for Telegram, ◎ for Instagram, ▶ for YouTube, in for LinkedIn. }
-              - { name: url, label: Link, type: string, description: Full https link. mailto: and tel: links are also supported. }
-              - { name: note, label: Short note / username, type: string, description: Optional text such as @yourname or Response within 24h. }
-              - { name: enabled, label: Show this channel, type: boolean, default: true }
-              - { name: showInContact, label: Show in Contact section, type: boolean, default: true }
-              - { name: showInFooter, label: Show in footer, type: boolean, default: true }
-              - { name: newTab, label: Open in new tab, type: boolean, default: true }
       - name: topics
-        label: Topics
+        label: Categories
         type: object
-        description: Add, edit, delete or reorder topics. Posts use the category value you choose in each post.
         list:
           min: 1
-          collapsible:
-            collapsed: true
-            summary: "{name}"
+          collapsible: { collapsed: true, summary: "{name}" }
         fields:
-          - { name: name, label: Topic name, type: string, required: true }
-          - { name: icon, label: Small symbol, type: string }
-          - { name: note, label: Short description, type: string }
-          - name: color
-            label: Topic accent color
-            type: select
-            options:
-              values:
-                - { name: "#f2c98c", label: Warm Gold }
-                - { name: "#b9cdb7", label: Sage Green }
-                - { name: "#e7afa8", label: Blush Pink }
-                - { name: "#b8c9db", label: Soft Blue }
-                - { name: "#cbb9d9", label: Lavender }
-                - { name: "#f0b99b", label: Peach }
-                - { name: "#add8c5", label: Mint }
-                - { name: "#d7a1af", label: Dusty Rose }
-                - { name: "#f3d97e", label: Butter Yellow }
-                - { name: "#c96f58", label: Terracotta }
+          - { name: name, label: Category name, type: string, required: true }
+          - { name: icon, label: Symbol, type: string }
+          - { name: note, label: Description, type: string }
+          - { name: color, label: Category color, type: string }
       - name: posts
-        label: Journal posts
+        label: Blog Posts
         type: object
-        description: Add a post with Add item. Open any existing post to edit it, use the trash button to delete it, or drag posts to reorder them. The website calculates reading time automatically from the article text. Only one post should be marked Featured.
+        description: Add, edit, delete or reorder posts. Reading time is calculated automatically on the website.
         list:
           min: 1
-          collapsible:
-            collapsed: true
-            summary: "{title}"
+          collapsible: { collapsed: true, summary: "{title}" }
         fields:
-          - name: slug
-            label: URL slug
-            type: string
-            description: Use lowercase English words separated by hyphens, for example my-new-story. Keep this unique.
-            required: true
+          - { name: slug, label: URL slug, type: string, required: true }
           - { name: title, label: Title, type: string, required: true }
           - { name: author, label: Author, type: string, default: Tam Phan }
-          - name: category
-            label: Category
-            type: string
-            description: Enter the topic name exactly as it appears in Topics, for example Self-Care or Money. This keeps topics flexible so you can add new ones later.
-            required: true
+          - { name: category, label: Category, type: string, required: true }
           - name: date
             label: Published date
             type: date
-            description: New posts can use today's date; you can also change it before or after publishing.
+            options: { format: yyyy-MM-dd }
+          - name: updatedDate
+            label: Last updated date
+            type: date
+            options: { format: yyyy-MM-dd }
+          - name: status
+            label: Status
+            type: select
             options:
-              format: yyyy-MM-dd
-          - name: readTime
-            label: Reading time
-            type: string
-            hidden: true
-            description: Calculated automatically from the article content on the website.
+              values:
+                - { name: published, label: Published }
+                - { name: draft, label: Draft }
+            default: published
+          - { name: featured, label: Featured post, type: boolean }
           - { name: excerpt, label: Card summary, type: text, required: true }
-          - { name: seoDescription, label: Google and social description, type: text }
+          - { name: seoTitle, label: SEO title, type: string }
+          - { name: seoDescription, label: SEO description, type: text }
+          - name: socialImage
+            label: Social sharing image
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
           - { name: lead, label: Opening sentence, type: text }
           - { name: quote, label: Highlighted quote, type: text }
           - name: tags
-            label: Search tags
+            label: Tags
             type: string
             list: true
+          - name: content
+            label: Article content — text & images
+            type: rich-text
+            description: Use the image button to upload images anywhere inside the article.
+            options:
+              format: html
+              switcher: true
+              media: media
+              extensions: [jpg, jpeg, png, webp, gif]
+              rename: safe
           - name: body
             label: Legacy paragraphs
             type: text
             list: true
-            description: Existing older posts use this field. For new posts, use the rich content editor below.
-          - name: content
-            label: Article content — add text and images here
-            type: rich-text
-            description: Write and format the full article here. Use the image button inside the editor to upload images anywhere in the article.
-            options:
-              format: html
-              switcher: true
-              media: blog_images
-              extensions: [jpg, jpeg, png, webp, gif]
-              rename: safe
           - name: image
             label: Cover image
             type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: color, label: Accent color, type: string, description: Enter a hex color such as #f0b99b. }
+          - { name: relatedSlugs, label: Manual related post slugs, type: string, list: true, description: Optional. Leave empty for automatic related posts. }
+
+  - name: case_studies
+    label: 04 Case Studies
+    type: file
+    path: content/case-studies.json
+    format: json
+    fields:
+      - name: caseStudies
+        label: Case Studies
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: slug, label: Slug, type: string, required: true }
+          - { name: title, label: Title, type: string, required: true }
+          - { name: summary, label: Summary, type: text }
+          - { name: challenge, label: Challenge, type: text }
+          - { name: research, label: Research, type: text }
+          - { name: solution, label: Solution, type: text }
+          - { name: result, label: Result, type: text }
+          - { name: metrics, label: Metrics / results, type: string, list: true }
+          - name: images
+            label: Images
+            type: image
+            list: true
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: color, label: Accent color, type: string }
+          - { name: featured, label: Featured, type: boolean }
+          - { name: published, label: Published, type: boolean }
+          - { name: order, label: Order, type: number }
+
+  - name: pages
+    label: 05 Custom Pages
+    type: file
+    path: content/pages.json
+    format: json
+    fields:
+      - name: pages
+        label: Pages
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: slug, label: Slug, type: string, required: true }
+          - { name: title, label: Page title, type: string, required: true }
+          - { name: excerpt, label: Short description, type: text }
+          - name: content
+            label: Page content
+            type: rich-text
             options:
-              media: blog_images
-              extensions: [jpg, jpeg, png, webp]
+              format: html
+              switcher: true
+              media: media
+              extensions: [jpg, jpeg, png, webp, gif]
               rename: safe
-          - name: color
-            label: Article accent color
-            type: select
-            description: Used for the card, cover placeholder and article accents.
-            options:
-              values:
-                - { name: "#f2c98c", label: Warm Gold }
-                - { name: "#b9cdb7", label: Sage Green }
-                - { name: "#e7afa8", label: Blush Pink }
-                - { name: "#b8c9db", label: Soft Blue }
-                - { name: "#cbb9d9", label: Lavender }
-                - { name: "#f0b99b", label: Peach }
-                - { name: "#add8c5", label: Mint }
-                - { name: "#d7a1af", label: Dusty Rose }
-                - { name: "#f3d97e", label: Butter Yellow }
-                - { name: "#c96f58", label: Terracotta }
-          - { name: featured, label: Featured post, type: boolean }
+          - name: image
+            label: Header image
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: seoTitle, label: SEO title, type: string }
+          - { name: seoDescription, label: SEO description, type: text }
+          - name: socialImage
+            label: Social image
+            type: image
+            options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
+          - { name: published, label: Published, type: boolean }
+          - { name: showInMenu, label: Add to menu, type: boolean }
+          - { name: menuLabel, label: Menu label, type: string }
+          - { name: order, label: Order, type: number }
