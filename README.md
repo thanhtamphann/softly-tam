@@ -11,4 +11,6 @@ A warm, editorial personal blog for Tam Phan, built as a static GitHub Pages web
 
 New posts added through Pages CMS automatically appear under their selected topic and receive a shareable `post.html?story=...` page. Fill the URL slug, author, date, reading time, SEO description, cover image, article paragraphs, quote, and search tags.
 
+Use **Article content — add text and images here** for new posts. It is a rich-text editor that supports headings, lists, quotes, links, and images inserted anywhere in the article. Uploaded images are stored in `assets/images/articles`.
+
 The newsletter form is currently a visual front-end form. Connect it to an email platform before collecting live subscriptions.
