@@ -1,10 +1,9 @@
 {
   "site": {
-    "name": "Softly, Tam",
+    "name": "Nerdy, Tam",
     "heroEyebrow": "A quiet corner of the internet",
     "heroTitle": "For the days you are learning to choose yourself.",
     "heroIntro": "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.",
-    "profileImage": "",
     "aboutTitle": "Hi, I’m Tam. I write to make life feel a little less lonely.",
     "aboutBody": [
       "I’m a content writer, curious observer, and lifelong student of what makes us human. This space is where I turn lived moments and careful research into words you can actually use.",
@@ -13,23 +12,184 @@
     "contactText": "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.",
     "newsletterTitle": "A little pause, delivered gently.",
     "newsletterText": "Occasional notes on being human, finding clarity, and creating a life that feels like yours.",
-    "footerTagline": "Thoughtful notes for a gentler, braver life.",
-    "email": "",
-    "instagram": ""
+    "footerTagline": "Thoughtful notes for a gentler, braver life."
   },
   "topics": [
-    {"name":"Self-Care","icon":"☼","note":"Rest, rituals & boundaries","color":"#f2c98c"},
-    {"name":"Money","icon":"◌","note":"Calm, practical finances","color":"#b9cdb7"},
-    {"name":"Love","icon":"♡","note":"Connection without losing you","color":"#e7afa8"},
-    {"name":"Psychology","icon":"⌁","note":"Understanding your inner world","color":"#b8c9db"},
-    {"name":"Real Life","icon":"✦","note":"Personal essays & honest notes","color":"#cbb9d9"}
+    {
+      "name": "Self-Care",
+      "icon": "☼",
+      "note": "Rest, rituals & boundaries",
+      "color": "#f2c98c"
+    },
+    {
+      "name": "Money",
+      "icon": "◌",
+      "note": "Calm, practical finances",
+      "color": "#b9cdb7"
+    },
+    {
+      "name": "Love",
+      "icon": "♡",
+      "note": "Connection without losing you",
+      "color": "#e7afa8"
+    },
+    {
+      "name": "Psychology",
+      "icon": "⌁",
+      "note": "Understanding your inner world",
+      "color": "#b8c9db"
+    },
+    {
+      "name": "Real Life",
+      "icon": "✦",
+      "note": "Personal essays & honest notes",
+      "color": "#cbb9d9"
+    }
   ],
   "posts": [
-    {"slug":"you-dont-need-to-earn-your-rest","title":"You Don’t Need to Earn Your Rest","author":"Tam Phan","category":"Self-Care","date":"September 12, 2026","readTime":"6 min read","excerpt":"Why slowing down can feel so uncomfortable—and how to rest before your body forces you to.","seoDescription":"A gentle reflection on rest, productivity, and learning to pause before burnout.","lead":"Rest is not a reward for becoming exhausted. It is part of the work of being alive.","quote":"A gentler life is built in small permissions.","tags":["rest","boundaries","burnout"],"body":["For a long time, I treated rest like a finish line. I could reach it after every message was answered, every task was checked, and everyone else was comfortable. The problem was that the finish line kept moving.","Real rest begins when we stop asking whether we have done enough to deserve it. It can be ten unhurried minutes, a meal without a screen, or one honest no.","A gentler life is built in small permissions. Today, let rest be one of them."],"color":"#f2c98c","image":"","featured":true},
-    {"slug":"a-simple-money-date-with-yourself","title":"A Simple Money Date With Yourself","author":"Tam Phan","category":"Money","date":"September 7, 2026","readTime":"5 min read","excerpt":"A shame-free monthly ritual to understand your money and make one clear next decision.","seoDescription":"A calm monthly money ritual for understanding spending and making one practical next decision.","lead":"You do not need to love spreadsheets to feel safe with money.","quote":"Clarity grows when we meet our numbers with curiosity instead of criticism.","tags":["money habits","budget","financial clarity"],"body":["Choose one quiet hour, make a drink you like, and open your accounts without judgment. The first goal is simply to know what is true.","Write down what came in, what went out, and which expense surprised you. Then choose one small action for next month.","Clarity grows when we meet our numbers regularly, with curiosity instead of criticism."],"color":"#b9cdb7","image":""},
-    {"slug":"love-without-self-abandonment","title":"Love Should Not Require Self-Abandonment","author":"Tam Phan","category":"Love","date":"August 30, 2026","readTime":"7 min read","excerpt":"The quiet difference between compromise and disappearing inside a relationship.","seoDescription":"How to recognize the difference between healthy compromise and losing yourself in love.","lead":"Healthy love makes room for two whole people.","quote":"Love can be tender and still have boundaries.","tags":["relationships","boundaries","self-worth"],"body":["Compromise asks both people to move. Self-abandonment asks one person to vanish.","Notice the small moments: Do you edit every feeling before speaking? Are your needs always framed as too much? Can you disagree and remain emotionally safe?","Love can be tender and still have boundaries. In fact, that may be what allows tenderness to last."],"color":"#e7afa8","image":""},
-    {"slug":"why-we-overthink-after-a-good-day","title":"Why We Overthink After a Good Day","author":"Tam Phan","category":"Psychology","date":"August 22, 2026","readTime":"6 min read","excerpt":"When calm feels unfamiliar, the mind sometimes searches for a problem. Here is why.","seoDescription":"Why peace can sometimes activate overthinking, and how to meet the pattern more gently.","lead":"Sometimes anxiety appears not because something is wrong, but because peace is unfamiliar.","quote":"You do not have to turn every thought into an instruction.","tags":["overthinking","anxiety","nervous system"],"body":["The nervous system learns patterns. If uncertainty has been normal for a long time, a quiet day can feel suspicious.","Naming this response creates a little space around it. You can say: nothing is wrong right now; my mind is searching for an old pattern.","You do not have to argue with every thought. Let some pass without turning them into instructions."],"color":"#b8c9db","image":""},
-    {"slug":"the-year-i-stopped-performing-my-life","title":"The Year I Stopped Performing My Life","author":"Tam Phan","category":"Real Life","date":"August 14, 2026","readTime":"8 min read","excerpt":"What changed when I stopped asking how my choices looked and started asking how they felt.","seoDescription":"A personal essay about moving from an impressive-looking life toward one that feels true.","lead":"A beautiful-looking life and a life that feels like yours are not always the same thing.","quote":"We can change direction without turning the old path into a mistake.","tags":["personal essay","identity","change"],"body":["I had become very good at choosing what sounded impressive. I was less practiced at noticing what brought me alive.","The shift was not dramatic. It began with quieter choices: work I wanted to learn from, people I did not have to perform around, and mornings that belonged to me.","We can change direction without turning the old path into a mistake."],"color":"#cbb9d9","image":""},
-    {"slug":"five-tiny-ways-to-feel-like-yourself","title":"Five Tiny Ways to Feel More Like Yourself","author":"Tam Phan","category":"Self-Care","date":"August 4, 2026","readTime":"4 min read","excerpt":"Small anchors for the weeks when you feel scattered, tired, or far away from yourself.","seoDescription":"Five small, grounding practices for reconnecting with yourself during difficult weeks.","lead":"Coming back to yourself does not always require a reinvention.","quote":"Identity is often restored through small acts of recognition.","tags":["grounding","self-care","identity"],"body":["Wear the color you keep saving. Take the familiar route without headphones. Make the food that tastes like home.","Send one honest message. Put one unfinished expectation down.","Identity is often restored through small acts of recognition."],"color":"#f2c98c","image":""}
+    {
+      "slug": "you-dont-need-to-earn-your-rest",
+      "title": "You Don’t Need to Earn Your Rest",
+      "author": "Tam Phan",
+      "category": "Self-Care",
+      "date": "September 12, 2026",
+      "readTime": "6 min read",
+      "excerpt": "Why slowing down can feel so uncomfortable—and how to rest before your body forces you to.",
+      "seoDescription": "A gentle reflection on rest, productivity, and learning to pause before burnout.",
+      "lead": "Rest is not a reward for becoming exhausted. It is part of the work of being alive.",
+      "quote": "A gentler life is built in small permissions.",
+      "tags": [
+        "rest",
+        "boundaries",
+        "burnout"
+      ],
+      "body": [
+        "For a long time, I treated rest like a finish line. I could reach it after every message was answered, every task was checked, and everyone else was comfortable. The problem was that the finish line kept moving.",
+        "Real rest begins when we stop asking whether we have done enough to deserve it. It can be ten unhurried minutes, a meal without a screen, or one honest no.",
+        "A gentler life is built in small permissions. Today, let rest be one of them."
+      ],
+      "color": "#f2c98c",
+      "featured": true
+    },
+    {
+      "slug": "a-simple-money-date-with-yourself",
+      "title": "A Simple Money Date With Yourself",
+      "author": "Tam Phan",
+      "category": "Money",
+      "date": "September 7, 2026",
+      "readTime": "5 min read",
+      "excerpt": "A shame-free monthly ritual to understand your money and make one clear next decision.",
+      "seoDescription": "A calm monthly money ritual for understanding spending and making one practical next decision.",
+      "lead": "You do not need to love spreadsheets to feel safe with money.",
+      "quote": "Clarity grows when we meet our numbers with curiosity instead of criticism.",
+      "tags": [
+        "money habits",
+        "budget",
+        "financial clarity"
+      ],
+      "body": [
+        "Choose one quiet hour, make a drink you like, and open your accounts without judgment. The first goal is simply to know what is true.",
+        "Write down what came in, what went out, and which expense surprised you. Then choose one small action for next month.",
+        "Clarity grows when we meet our numbers regularly, with curiosity instead of criticism."
+      ],
+      "color": "#b9cdb7",
+      "featured": false
+    },
+    {
+      "slug": "love-without-self-abandonment",
+      "title": "Love Should Not Require Self-Abandonment",
+      "author": "Tam Phan",
+      "category": "Love",
+      "date": "August 30, 2026",
+      "readTime": "7 min read",
+      "excerpt": "The quiet difference between compromise and disappearing inside a relationship.",
+      "seoDescription": "How to recognize the difference between healthy compromise and losing yourself in love.",
+      "lead": "Healthy love makes room for two whole people.",
+      "quote": "Love can be tender and still have boundaries.",
+      "tags": [
+        "relationships",
+        "boundaries",
+        "self-worth"
+      ],
+      "body": [
+        "Compromise asks both people to move. Self-abandonment asks one person to vanish.",
+        "Notice the small moments: Do you edit every feeling before speaking? Are your needs always framed as too much? Can you disagree and remain emotionally safe?",
+        "Love can be tender and still have boundaries. In fact, that may be what allows tenderness to last."
+      ],
+      "color": "#e7afa8",
+      "featured": false
+    },
+    {
+      "slug": "why-we-overthink-after-a-good-day",
+      "title": "Why We Overthink After a Good Day",
+      "author": "Tam Phan",
+      "category": "Psychology",
+      "date": "August 22, 2026",
+      "readTime": "6 min read",
+      "excerpt": "When calm feels unfamiliar, the mind sometimes searches for a problem. Here is why.",
+      "seoDescription": "Why peace can sometimes activate overthinking, and how to meet the pattern more gently.",
+      "lead": "Sometimes anxiety appears not because something is wrong, but because peace is unfamiliar.",
+      "quote": "You do not have to turn every thought into an instruction.",
+      "tags": [
+        "overthinking",
+        "anxiety",
+        "nervous system"
+      ],
+      "body": [
+        "The nervous system learns patterns. If uncertainty has been normal for a long time, a quiet day can feel suspicious.",
+        "Naming this response creates a little space around it. You can say: nothing is wrong right now; my mind is searching for an old pattern.",
+        "You do not have to argue with every thought. Let some pass without turning them into instructions."
+      ],
+      "color": "#b8c9db",
+      "featured": false
+    },
+    {
+      "slug": "the-year-i-stopped-performing-my-life",
+      "title": "The Year I Stopped Performing My Life",
+      "author": "Tam Phan",
+      "category": "Real Life",
+      "date": "August 14, 2026",
+      "readTime": "8 min read",
+      "excerpt": "What changed when I stopped asking how my choices looked and started asking how they felt.",
+      "seoDescription": "A personal essay about moving from an impressive-looking life toward one that feels true.",
+      "lead": "A beautiful-looking life and a life that feels like yours are not always the same thing.",
+      "quote": "We can change direction without turning the old path into a mistake.",
+      "tags": [
+        "personal essay",
+        "identity",
+        "change"
+      ],
+      "body": [
+        "I had become very good at choosing what sounded impressive. I was less practiced at noticing what brought me alive.",
+        "The shift was not dramatic. It began with quieter choices: work I wanted to learn from, people I did not have to perform around, and mornings that belonged to me.",
+        "We can change direction without turning the old path into a mistake."
+      ],
+      "color": "#cbb9d9",
+      "featured": false
+    },
+    {
+      "slug": "five-tiny-ways-to-feel-like-yourself",
+      "title": "Five Tiny Ways to Feel More Like Yourself",
+      "author": "Tam Phan",
+      "category": "Self-Care",
+      "date": "August 4, 2026",
+      "readTime": "4 min read",
+      "excerpt": "Small anchors for the weeks when you feel scattered, tired, or far away from yourself.",
+      "seoDescription": "Five small, grounding practices for reconnecting with yourself during difficult weeks.",
+      "lead": "Coming back to yourself does not always require a reinvention.",
+      "quote": "Identity is often restored through small acts of recognition.",
+      "tags": [
+        "grounding",
+        "self-care",
+        "identity"
+      ],
+      "body": [
+        "Wear the color you keep saving. Take the familiar route without headphones. Make the food that tastes like home.",
+        "Send one honest message. Put one unfinished expectation down.",
+        "Identity is often restored through small acts of recognition."
+      ],
+      "color": "#f2c98c",
+      "featured": false
+    }
   ]
 }
