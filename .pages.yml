@@ -101,7 +101,6 @@ content:
               format: html
               switcher: true
               media: blog_images
-              path: articles
               extensions: [jpg, jpeg, png, webp, gif]
               rename: safe
           - name: image
