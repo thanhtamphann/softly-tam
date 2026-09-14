@@ -19,12 +19,23 @@ const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"
 const slugify = value => String(value || "story").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const postUrl = p => `post.html?story=${encodeURIComponent(p.slug || slugify(p.title))}`;
 const topicFor = name => (data.topics || []).find(t => t.name === name) || {color:"#dfc4a9",icon:"✦"};
+const displayDate = value => {
+  const date=String(value||"");
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return date;
+  return new Intl.DateTimeFormat("en-US",{month:"long",day:"numeric",year:"numeric",timeZone:"UTC"}).format(new Date(`${date}T00:00:00Z`));
+};
+const readingTime = p => {
+  const htmlText=p.content?new DOMParser().parseFromString(p.content,"text/html").body.textContent||"":"";
+  const articleText=htmlText||[p.lead,...(p.body||[]),p.quote].filter(Boolean).join(" ");
+  const words=articleText.trim().split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1,Math.ceil(words/220))} min read`;
+};
 
 function postArt(p){
   const topic=topicFor(p.category); const color=p.color || topic.color;
   return p.image ? `<a class="post-art" href="${postUrl(p)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy"></a>` : `<a class="post-art" style="--post-color:${escapeHtml(color)}" href="${postUrl(p)}" aria-label="Read ${escapeHtml(p.title)}"><span class="art-shape a"></span><span class="art-shape b"></span><span class="art-line"></span><span class="art-topic">${escapeHtml(topic.icon)}</span></a>`;
 }
-function meta(p, includeDate=true){return `<div class="post-meta"><span>${escapeHtml(p.category)}</span>${includeDate?`<span>${escapeHtml(p.date)}</span>`:""}<span>${escapeHtml(p.readTime)}</span></div>`}
+function meta(p, includeDate=true){return `<div class="post-meta"><span>${escapeHtml(p.category)}</span>${includeDate&&p.date?`<span>${escapeHtml(displayDate(p.date))}</span>`:""}<span>${escapeHtml(readingTime(p))}</span></div>`}
 function postCard(p){return `<article class="post-card reveal" data-category="${escapeHtml(p.category)}">${postArt(p)}<div class="post-copy">${meta(p)}<h3><a href="${postUrl(p)}">${escapeHtml(p.title)}</a></h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}">Read the story →</a></div></article>`}
 
 function renderSite(){
