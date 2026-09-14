@@ -4,8 +4,8 @@ A warm, editorial personal publication for Tam Phan, built as a static GitHub Pa
 
 ## Edit without code
 
-1. Open `https://thanhtamphann.github.io/softly-tam/admin/`.
-2. Sign in to Pages CMS with GitHub and select `thanhtamphann/softly-tam`.
+1. Open `https://thanhtamphann.github.io/tamora/admin/`.
+2. Sign in to Pages CMS with GitHub and select `thanhtamphann/tamora`.
 3. Open **01 Website Control Center** to edit the TAMORA brand, introduction, navigation, design, SEO and contact details.
 4. Use the Blog section to manage topics, articles and cover images.
 5. Save. Pages CMS commits the update and GitHub Pages publishes it automatically.
