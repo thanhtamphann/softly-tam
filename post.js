@@ -9,13 +9,15 @@ function safeRichHtml(html){
   return doc.body.innerHTML;
 }
 function topicFor(name){return(data.topics||[]).find(t=>t.name===name)||{color:"#dfc4a9",icon:"✦"}}
+function displayDate(value){const date=String(value||"");if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return date;return new Intl.DateTimeFormat("en-US",{month:"long",day:"numeric",year:"numeric",timeZone:"UTC"}).format(new Date(`${date}T00:00:00Z`))}
+function readingTime(post){const htmlText=post.content?new DOMParser().parseFromString(post.content,"text/html").body.textContent||"":"";const articleText=htmlText||[post.lead,...(post.body||[]),post.quote].filter(Boolean).join(" ");const words=articleText.trim().split(/\s+/).filter(Boolean).length;return `${Math.max(1,Math.ceil(words/220))} min read`}
 function showToast(message){$(".toast").textContent=message;$(".toast").classList.add("show");setTimeout(()=>$(".toast").classList.remove("show"),3000)}
 function notFound(){document.title="Story not found — Softly, Tam";$("#article").innerHTML='<div class="not-found"><p class="eyebrow">A missing page</p><h1>This story wandered away.</h1><p><a href="index.html#journal">Return to the journal →</a></p></div>';$("#related").hidden=true}
 function render(post){
   const topic=topicFor(post.category); const description=post.seoDescription||post.excerpt;
   const siteName=data.site?.name||"Softly, Tam"; const author=post.author||data.site?.authorName||"Tam Phan";
   document.title=`${post.title} — ${siteName}`;$("#meta-description").content=description;$("#og-title").content=post.title;$("#og-description").content=description;document.querySelectorAll('[data-site-name]').forEach(el=>el.textContent=siteName);document.querySelectorAll('[data-author-name]').forEach(el=>el.textContent=data.site?.authorName||"Tam Phan");$('[data-footer-tagline]').textContent=data.site?.footerTagline||"Thoughtful notes for a gentler, braver life.";
-  $("#article-meta").innerHTML=`<span>${escapeHtml(post.category)}</span><span>${escapeHtml(post.date)}</span><span>${escapeHtml(post.readTime)}</span>`;
+  $("#article-meta").innerHTML=`<span>${escapeHtml(post.category)}</span>${post.date?`<span>${escapeHtml(displayDate(post.date))}</span>`:""}<span>${escapeHtml(readingTime(post))}</span>`;
   $("#article-title").textContent=post.title;$("#article-excerpt").textContent=post.excerpt;$("#article-byline").textContent=`By ${author}`;
   $("#article-cover").style.setProperty("--cover-color",post.color||topic.color);$("#article-cover").innerHTML=post.image?`<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}">`:`<span class="art-shape a"></span><span class="art-shape b"></span><span class="art-line"></span><span class="art-topic">${escapeHtml(topic.icon)}</span>`;
   const paragraphs=(post.body||[]).map((p,i)=>`${i===1&&post.quote?`<blockquote class="article-quote">“${escapeHtml(post.quote)}”</blockquote>`:""}<p>${escapeHtml(p)}</p>`).join("");
