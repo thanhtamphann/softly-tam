@@ -56,10 +56,24 @@ content:
           - { name: newsletterText, label: Newsletter description, type: text }
           - { name: newsletterUrl, label: Newsletter signup URL, type: string, description: Add your Substack, Mailchimp or Buttondown signup link. Leave blank to show Coming soon. }
           - { name: footerTagline, label: Footer tagline, type: string }
-          - { name: email, label: Contact email, type: string, description: Messages from the website contact form are sent to this address. }
-          - { name: facebook, label: Facebook / Fanpage URL, type: string, description: Add the full page URL. Leave blank to hide the button. }
-          - { name: instagram, label: Instagram URL, type: string, description: Add the full profile URL. Leave blank to hide the button. }
-          - { name: tiktok, label: TikTok URL, type: string, description: Add the full profile URL. Leave blank to hide the button. }
+          - { name: email, label: Contact form recipient email, type: string, description: Messages submitted through the website contact form are sent to this address. }
+          - name: contactChannels
+            label: Contact & social channels
+            type: object
+            description: Add any contact channel without editing code. Examples: Telegram, Facebook, Instagram, TikTok, Messenger, WhatsApp, LinkedIn, YouTube, Discord, Threads, email or your own community. Leave URL blank or disable an item to hide it.
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - { name: label, label: Channel name, type: string, required: true }
+              - { name: icon, label: Icon / short symbol, type: string, description: Optional. Examples: ✈ for Telegram, ◎ for Instagram, ▶ for YouTube, in for LinkedIn. }
+              - { name: url, label: Link, type: string, description: Full https link. mailto: and tel: links are also supported. }
+              - { name: note, label: Short note / username, type: string, description: Optional text such as @yourname or Response within 24h. }
+              - { name: enabled, label: Show this channel, type: boolean, default: true }
+              - { name: showInContact, label: Show in Contact section, type: boolean, default: true }
+              - { name: showInFooter, label: Show in footer, type: boolean, default: true }
+              - { name: newTab, label: Open in new tab, type: boolean, default: true }
       - name: topics
         label: Topics
         type: object
