@@ -30,6 +30,15 @@ const readingTime = p => {
   const words=articleText.trim().split(/\s+/).filter(Boolean).length;
   return `${Math.max(1,Math.ceil(words/220))} min read`;
 };
+function prepareHeroAnimation(){
+  const hero=$('.hero'); const title=$('[data-hero-title]');
+  if(!hero||!title)return;
+  const words=title.textContent.trim().split(/\s+/);
+  title.setAttribute('aria-label',words.join(' '));
+  title.innerHTML=words.map((word,index)=>`<span class="hero-word" style="--word-index:${index}" aria-hidden="true">${escapeHtml(word)}</span>`).join(' ');
+  hero.classList.add('hero-animate');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('is-entered')));
+}
 
 function postArt(p){
   const topic=topicFor(p.category); const color=p.color || topic.color;
@@ -87,5 +96,5 @@ function bind(){
 }
 function showToast(message){$('.toast').textContent=message;$('.toast').classList.add('show');setTimeout(()=>$('.toast').classList.remove('show'),3500)}
 function reveal(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){$$('.reveal').forEach(el=>el.classList.add('visible'));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.05});$$('.reveal:not(.visible)').forEach(el=>io.observe(el))}
-async function init(){try{const r=await fetch(`content/site.json?fresh=${Date.now()}`,{cache:'no-store'});if(r.ok)data=await r.json()}catch(e){}renderSite();renderFeatured();renderTopics();renderJournal();bind();reveal();$('#year').textContent=new Date().getFullYear()}
+async function init(){try{const r=await fetch(`content/site.json?fresh=${Date.now()}`,{cache:'no-store'});if(r.ok)data=await r.json()}catch(e){}renderSite();prepareHeroAnimation();renderFeatured();renderTopics();renderJournal();bind();reveal();$('#year').textContent=new Date().getFullYear()}
 init();
