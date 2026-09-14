@@ -41,8 +41,7 @@ content:
           - name: defaultLanguage
             label: Default language
             type: select
-            options:
-              values: [en, vi]
+            options: { values: [en, vi] }
       - name: announcement
         label: Announcement Bar
         type: object
@@ -74,12 +73,11 @@ content:
           - name: style
             label: Style
             type: select
-            options:
-              values: [primary, secondary, text]
+            options: { values: [primary, secondary, text] }
           - { name: enabled, label: Show button, type: boolean, default: true }
           - { name: newTab, label: Open in new tab, type: boolean }
       - name: homepage
-        label: Homepage
+        label: Homepage Structure
         type: object
         fields:
           - { name: heroEyebrow, label: Hero eyebrow, type: string }
@@ -88,7 +86,7 @@ content:
           - name: sections
             label: Homepage sections
             type: object
-            description: Drag to reorder. Toggle Enabled to show/hide a section.
+            description: Change order numbers and toggle sections on/off.
             list:
               collapsible: { collapsed: true, summary: "{label}" }
             fields:
@@ -97,7 +95,7 @@ content:
               - { name: enabled, label: Enabled, type: boolean, default: true }
               - { name: order, label: Order, type: number }
       - name: contact
-        label: Contact
+        label: Contact & Social
         type: object
         fields:
           - { name: heading, label: Contact heading, type: text }
@@ -107,7 +105,7 @@ content:
           - name: channels
             label: Contact & Social Channels
             type: object
-            description: Add Telegram, Facebook, Instagram, TikTok, WhatsApp, LinkedIn, YouTube, Discord, Threads, email, phone or any future platform.
+            description: Add or delete any channel. Empty links can stay as placeholders.
             list:
               collapsible: { collapsed: true, summary: "{label}" }
             fields:
@@ -135,9 +133,8 @@ content:
           - name: defaultMode
             label: Default color mode
             type: select
-            options:
-              values: [light, dark]
-          - { name: allowVisitorDarkMode, label: Show Light/Dark switch to visitors, type: boolean }
+            options: { values: [light, dark] }
+          - { name: allowVisitorDarkMode, label: Show Light/Dark switch, type: boolean }
           - { name: primaryColor, label: Primary text color, type: string }
           - { name: backgroundColor, label: Background color, type: string }
           - { name: surfaceColor, label: Surface color, type: string }
@@ -146,13 +143,11 @@ content:
           - name: animation
             label: Animation style
             type: select
-            options:
-              values: [none, subtle, strong, slide, fade, zoom]
+            options: { values: [none, subtle, fade] }
           - name: animationSpeed
             label: Animation speed
             type: select
-            options:
-              values: [slow, normal, fast]
+            options: { values: [slow, normal] }
       - name: seo
         label: SEO & Sharing
         type: object
@@ -166,8 +161,32 @@ content:
           - { name: canonicalUrl, label: Canonical website URL, type: string }
           - { name: twitterHandle, label: X / Twitter handle, type: string }
 
+  - name: home
+    label: 02 Home Content
+    type: file
+    path: content/home.json
+    format: json
+    fields:
+      - name: about
+        label: About Section
+        type: object
+        fields:
+          - { name: title, label: About title, type: text }
+          - { name: body, label: About paragraphs, type: text, list: true }
+          - { name: values, label: About values, type: string, list: true }
+      - name: newsletter
+        label: Newsletter Section
+        type: object
+        fields:
+          - { name: enabled, label: Show newsletter, type: boolean, default: true }
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Newsletter title, type: text }
+          - { name: text, label: Newsletter text, type: text }
+          - { name: buttonLabel, label: Button label, type: string }
+          - { name: url, label: Newsletter signup URL, type: string }
+
   - name: projects
-    label: 02 Projects & Videos
+    label: 03 Projects & Videos
     type: file
     path: content/projects.json
     format: json
@@ -202,7 +221,7 @@ content:
           - { name: order, label: Order, type: number }
 
   - name: blog
-    label: 03 Blog
+    label: 04 Blog
     type: file
     path: content/site.json
     format: json
@@ -221,14 +240,13 @@ content:
       - name: posts
         label: Blog Posts
         type: object
-        description: Add, edit, delete or reorder posts. Reading time is calculated automatically on the website.
+        description: Add, edit or delete posts. Read time is automatic.
         list:
-          min: 1
           collapsible: { collapsed: true, summary: "{title}" }
         fields:
           - { name: slug, label: URL slug, type: string, required: true }
           - { name: title, label: Title, type: string, required: true }
-          - { name: author, label: Author, type: string, default: Tam Phan }
+          - { name: author, label: Author, type: string }
           - { name: category, label: Category, type: string, required: true }
           - name: date
             label: Published date
@@ -256,33 +274,26 @@ content:
             options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
           - { name: lead, label: Opening sentence, type: text }
           - { name: quote, label: Highlighted quote, type: text }
-          - name: tags
-            label: Tags
-            type: string
-            list: true
+          - { name: tags, label: Tags, type: string, list: true }
           - name: content
             label: Article content — text & images
             type: rich-text
-            description: Use the image button to upload images anywhere inside the article.
             options:
               format: html
               switcher: true
               media: media
               extensions: [jpg, jpeg, png, webp, gif]
               rename: safe
-          - name: body
-            label: Legacy paragraphs
-            type: text
-            list: true
+          - { name: body, label: Legacy paragraphs, type: text, list: true }
           - name: image
             label: Cover image
             type: image
             options: { media: media, extensions: [jpg, jpeg, png, webp], rename: safe }
-          - { name: color, label: Accent color, type: string, description: Enter a hex color such as #f0b99b. }
-          - { name: relatedSlugs, label: Manual related post slugs, type: string, list: true, description: Optional. Leave empty for automatic related posts. }
+          - { name: color, label: Accent color, type: string }
+          - { name: relatedSlugs, label: Manual related post slugs, type: string, list: true }
 
   - name: case_studies
-    label: 04 Case Studies
+    label: 05 Case Studies
     type: file
     path: content/case-studies.json
     format: json
@@ -312,7 +323,7 @@ content:
           - { name: order, label: Order, type: number }
 
   - name: pages
-    label: 05 Custom Pages
+    label: 06 Custom Pages
     type: file
     path: content/pages.json
     format: json
