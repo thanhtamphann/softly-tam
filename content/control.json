@@ -6,7 +6,7 @@
     "logoImage": "",
     "favicon": "",
     "profileImage": "",
-    "email": "",
+    "email": "thanhtamphannforwork@gmail.com",
     "cvPdf": "",
     "defaultLanguage": "en"
   },
@@ -25,7 +25,7 @@
     {"label":"Letters","url":"#letters","enabled":true,"newTab":false}
   ],
   "ctaButtons": [
-    {"label":"Contact","url":"#contact","style":"primary","enabled":true,"newTab":false}
+    {"label":"Contact","url":"#contact","style":"primary","enabled":false,"newTab":false}
   ],
   "homepage": {
     "heroEyebrow": "A quiet corner of the internet",
@@ -46,8 +46,14 @@
     "heading": "Writing collaborations, brand stories & kind hellos.",
     "text": "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.",
     "formEnabled": true,
-    "recipientEmail": "",
-    "channels": []
+    "recipientEmail": "thanhtamphannforwork@gmail.com",
+    "channels": [
+      {"label":"Email","icon":"✉","url":"mailto:thanhtamphannforwork@gmail.com","note":"thanhtamphannforwork@gmail.com","enabled":true,"showInContact":true,"showInFooter":true,"newTab":false},
+      {"label":"Telegram","icon":"✈","url":"https://t.me/thanhtamphann","note":"@thanhtamphann","enabled":true,"showInContact":true,"showInFooter":true,"newTab":true},
+      {"label":"Instagram","icon":"◎","url":"","note":"","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true},
+      {"label":"Facebook","icon":"f","url":"","note":"","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true},
+      {"label":"TikTok","icon":"♪","url":"","note":"","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true}
+    ]
   },
   "design": {
     "theme": "editorial",
