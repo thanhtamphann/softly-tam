@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Softly, Tam — thoughtful notes on self-care, money, love, psychology, and becoming." />
+    <meta property="og:title" content="Softly, Tam — Notes for a gentler life" />
+    <meta property="og:description" content="Thoughtful writing about self-care, money, love, psychology, and becoming." />
+    <meta property="og:type" content="website" />
     <meta name="theme-color" content="#f7f0e6" />
     <title>Softly, Tam — Notes for a gentler life</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +21,7 @@
       <a class="brand" href="#top" aria-label="Softly, Tam home"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav id="site-nav" aria-label="Main navigation">
-        <a href="#journal">Journal</a><a href="#topics">Topics</a><a href="#about">About</a><a href="#letters">Letters</a>
+        <a href="#journal">Journal</a><a href="#topics">Topics</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#letters">Letters</a>
       </nav>
     </header>
 
@@ -42,8 +45,12 @@
       <section class="featured section-shell" id="journal">
         <div class="section-heading reveal"><div><p class="eyebrow">From the journal</p><h2>Words to come<br /><em>home to.</em></h2></div><p>Small shifts, honest questions, and practical ideas for living with more intention.</p></div>
         <div class="featured-layout" id="featured-post"></div>
-        <div class="post-grid" id="post-grid"></div>
-        <div class="center"><button class="button secondary" id="load-more">View more stories</button></div>
+        <div class="journal-tools reveal">
+          <label class="search-box"><span>⌕</span><input id="post-search" type="search" placeholder="Search the journal…" aria-label="Search journal posts" /></label>
+          <div class="filter-pills" id="filter-pills" aria-label="Filter articles by topic"></div>
+        </div>
+        <div id="topic-sections"></div>
+        <p class="empty-state" id="empty-state" hidden>No stories found. Try another word or topic.</p>
       </section>
 
       <section class="topics" id="topics">
@@ -55,17 +62,19 @@
 
       <section class="about section-shell" id="about">
         <div class="about-art reveal"><div class="paper paper-back"></div><div class="paper paper-front"><p>“A soft life is not a life without courage.”</p><span>— a note to self</span></div><span class="flower">❋</span></div>
-        <div class="about-copy reveal"><p class="eyebrow">Behind the words</p><h2 data-about-title>Hi, I’m Tam.<br /><em>I write to make life feel a little less lonely.</em></h2><div data-about-body><p>I’m a content writer, curious observer, and lifelong student of what makes us human. This space is where I turn lived moments and careful research into words you can actually use.</p><p>No perfect routines. No one-size-fits-all answers. Just thoughtful stories and grounded ideas for becoming more at home in your own life.</p></div><div class="signature">Tam <span>♡</span></div></div>
+        <div class="about-copy reveal"><p class="eyebrow">Behind the words</p><h2 data-about-title>Hi, I’m Tam.<br /><em>I write to make life feel a little less lonely.</em></h2><div data-about-body><p>I’m a content writer, curious observer, and lifelong student of what makes us human. This space is where I turn lived moments and careful research into words you can actually use.</p><p>No perfect routines. No one-size-fits-all answers. Just thoughtful stories and grounded ideas for becoming more at home in your own life.</p></div><div class="about-values"><span>Research-led</span><span>Human-first</span><span>Written with care</span></div><div class="signature">Tam <span>♡</span></div></div>
       </section>
+
+      <section class="contact-strip" id="contact"><div class="section-shell contact-inner reveal"><div><p class="eyebrow">Let’s make something meaningful</p><h2>Writing collaborations,<br /><em>brand stories & kind hellos.</em></h2></div><div><p data-contact-text>If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.</p><a class="button primary contact-button" data-contact-email href="#">Write to Tam →</a></div></div></section>
 
       <section class="newsletter" id="letters">
         <div class="newsletter-inner reveal"><span class="mail-icon">✉</span><p class="eyebrow">A letter for your Sunday</p><h2 data-newsletter-title>A little pause,<br /><em>delivered gently.</em></h2><p data-newsletter-text>Occasional notes on being human, finding clarity, and creating a life that feels like yours.</p><form id="newsletter-form"><label class="sr-only" for="email">Email address</label><input id="email" type="email" placeholder="Your email address" required /><button type="submit">Join the letters →</button></form><small>No noise. Just something worth opening.</small></div>
       </section>
+
+      <section class="disclaimer section-shell" id="disclaimer"><p><strong>A gentle note:</strong> Articles about money and psychology are shared for education and personal reflection only. They are not financial, medical, or mental-health advice.</p></section>
     </main>
 
-    <footer class="site-footer"><div><a class="brand" href="#top"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a><p data-footer-tagline>Thoughtful notes for a gentler, braver life.</p></div><div class="footer-links"><a href="#journal">Journal</a><a href="#about">About</a><a data-social-instagram href="#">Instagram</a><a data-contact-email href="#">Email</a></div><p class="copyright">© <span id="year"></span> Tam Phan. Made with care.</p></footer>
-
-    <dialog id="article-dialog"><button class="dialog-close" aria-label="Close article">×</button><article id="article-content"></article></dialog>
+    <footer class="site-footer"><div><a class="brand" href="#top"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a><p data-footer-tagline>Thoughtful notes for a gentler, braver life.</p></div><div class="footer-links"><a href="#journal">Journal</a><a href="#about">About</a><a href="#disclaimer">Disclaimer</a><a data-social-instagram href="#">Instagram</a><a data-contact-email href="#">Email</a></div><p class="copyright">© <span id="year"></span> Tam Phan. Made with care.</p></footer>
     <div class="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

@@ -34,6 +34,7 @@ content:
             label: About paragraphs
             type: text
             list: true
+          - { name: contactText, label: Contact section message, type: text }
           - { name: newsletterTitle, label: Newsletter heading, type: string }
           - { name: newsletterText, label: Newsletter description, type: text }
           - { name: footerTagline, label: Footer tagline, type: string }
@@ -51,6 +52,7 @@ content:
           - { name: name, label: Topic name, type: string, required: true }
           - { name: icon, label: Small symbol, type: string }
           - { name: note, label: Short description, type: string }
+          - { name: color, label: Topic accent color, type: string }
       - name: posts
         label: Journal posts
         type: object
@@ -61,7 +63,13 @@ content:
             collapsed: true
             summary: "{title}"
         fields:
+          - name: slug
+            label: URL slug
+            type: string
+            description: Use lowercase English words separated by hyphens, for example my-new-story. Keep this unique.
+            required: true
           - { name: title, label: Title, type: string, required: true }
+          - { name: author, label: Author, type: string, default: Tam Phan }
           - name: category
             label: Category
             type: select
@@ -71,7 +79,13 @@ content:
           - { name: date, label: Published date, type: string }
           - { name: readTime, label: Reading time, type: string }
           - { name: excerpt, label: Card summary, type: text, required: true }
+          - { name: seoDescription, label: Google and social description, type: text }
           - { name: lead, label: Opening sentence, type: text }
+          - { name: quote, label: Highlighted quote, type: text }
+          - name: tags
+            label: Search tags
+            type: string
+            list: true
           - name: body
             label: Article paragraphs
             type: text
