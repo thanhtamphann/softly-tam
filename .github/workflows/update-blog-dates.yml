@@ -1,0 +1,59 @@
+name: Update blog dates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - content/site.json
+
+permissions:
+  contents: write
+
+jobs:
+  update-dates:
+    if: ${{ !contains(github.event.head_commit.message, 'Auto update blog dates') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Update dates for changed posts
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const path = 'content/site.json';
+          const current = JSON.parse(fs.readFileSync(path, 'utf8'));
+          let previous = { posts: [] };
+          try {
+            previous = JSON.parse(cp.execSync(`git show HEAD^:${path}`, {encoding:'utf8'}));
+          } catch {}
+          const oldMap = new Map((previous.posts || []).map(p => [p.slug, p]));
+          const today = new Date().toISOString().slice(0,10);
+          const clean = p => {
+            const x = JSON.parse(JSON.stringify(p));
+            delete x.updatedDate;
+            return x;
+          };
+          let changed = false;
+          for (const post of current.posts || []) {
+            const old = oldMap.get(post.slug);
+            if (!post.date) { post.date = today; changed = true; }
+            if (old && JSON.stringify(clean(post)) !== JSON.stringify(clean(old)) && post.updatedDate !== today) {
+              post.updatedDate = today;
+              changed = true;
+            }
+          }
+          if (changed) fs.writeFileSync(path, JSON.stringify(current, null, 2) + '\n');
+          NODE
+      - name: Commit automatic dates
+        run: |
+          if git diff --quiet -- content/site.json; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/site.json
+          git commit -m "Auto update blog dates"
+          git push
