@@ -1,0 +1,26 @@
+/* TAMORA contact form */
+.contact-form-section{padding:72px 0 82px;border-top:1px solid var(--ink);background:var(--milk)}
+.contact-form-layout{display:grid;grid-template-columns:minmax(240px,.72fr) minmax(0,1.28fr);gap:64px;align-items:start}
+.contact-form-intro{position:sticky;top:24px}
+.contact-form-intro .eyebrow{margin-bottom:12px}
+.contact-form-intro h3{font:500 clamp(38px,4.2vw,58px)/1 var(--serif);letter-spacing:-.035em;margin:0 0 18px;max-width:520px}
+.contact-form-intro h3 em{color:var(--coral);font-weight:400}
+.contact-form-intro>p:last-child{max-width:420px;margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+.contact-form-card{background:var(--white);border:1px solid var(--line);padding:34px;box-shadow:0 16px 42px rgba(79,58,40,.05)}
+.contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}
+.contact-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.contact-field.full{grid-column:1/-1}
+.contact-field span{font:600 10px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--clay)}
+.contact-field input,.contact-field textarea{width:100%;border:0;border-bottom:1px solid color-mix(in srgb,var(--ink) 28%,transparent);border-radius:0;background:transparent;color:var(--ink);padding:11px 0 12px;outline:0;font:500 14px/1.4 var(--sans);transition:border-color .2s ease,box-shadow .2s ease}
+.contact-field textarea{min-height:145px;resize:vertical;line-height:1.65}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:color-mix(in srgb,var(--muted) 74%,transparent)}
+.contact-field input:focus,.contact-field textarea:focus{border-color:var(--coral);box-shadow:0 2px 0 -1px var(--coral)}
+.contact-form-actions{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.contact-form-note{margin:0;max-width:430px;color:var(--muted);font-size:11px;line-height:1.55}
+.contact-submit{flex:0 0 auto;min-width:166px}
+.contact-submit span{transition:transform .2s ease}.contact-submit:hover span{transform:translateX(3px)}
+.contact-form-fallback{margin:14px 0 0;color:var(--muted);font-size:11px}
+.contact-form-fallback a{color:var(--ink);text-underline-offset:3px}
+.contact-form-fallback a:hover{color:var(--coral)}
+@media(max-width:900px){.contact-form-layout{grid-template-columns:1fr;gap:32px}.contact-form-intro{position:static}.contact-form-intro h3{max-width:680px}.contact-form-intro>p:last-child{max-width:620px}}
+@media(max-width:620px){.contact-form-section{padding:52px 0 60px}.contact-form-card{padding:24px 20px}.contact-form-grid{grid-template-columns:1fr;gap:19px}.contact-field.full{grid-column:auto}.contact-form-actions{align-items:stretch;flex-direction:column}.contact-submit{width:100%}.contact-form-intro h3{font-size:39px}}
