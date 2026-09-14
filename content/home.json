@@ -1,0 +1,18 @@
+{
+  "about": {
+    "title": "Hi, I’m Tam. I write to make life feel a little less lonely.",
+    "body": [
+      "I’m a content writer, curious observer, and lifelong student of what makes us human. This space is where I turn lived moments and careful research into words you can actually use.",
+      "No perfect routines. No one-size-fits-all answers. Just thoughtful stories and grounded ideas for becoming more at home in your own life."
+    ],
+    "values": ["Research-led", "Human-first", "Written with care"]
+  },
+  "newsletter": {
+    "enabled": true,
+    "eyebrow": "A letter for your Sunday",
+    "title": "A little pause, delivered gently.",
+    "text": "Occasional notes on being human, finding clarity, and creating a life that feels like yours.",
+    "buttonLabel": "Join the letters",
+    "url": ""
+  }
+}
