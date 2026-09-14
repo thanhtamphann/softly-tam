@@ -1,0 +1,87 @@
+media:
+  - name: blog_images
+    label: Blog images
+    input: assets/images
+    output: /softly-tam/assets/images
+    extensions: [jpg, jpeg, png, webp, gif]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: website
+    label: Website content
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: site
+        label: Brand, introduction & contact
+        type: object
+        fields:
+          - { name: name, label: Website name, type: string, required: true }
+          - { name: heroEyebrow, label: Small line above heading, type: string }
+          - { name: heroTitle, label: Main heading, type: text, required: true }
+          - { name: heroIntro, label: Short introduction, type: text, required: true }
+          - name: profileImage
+            label: Your portrait
+            type: image
+            options:
+              media: blog_images
+              extensions: [jpg, jpeg, png, webp]
+              rename: safe
+          - { name: aboutTitle, label: About heading, type: text }
+          - name: aboutBody
+            label: About paragraphs
+            type: text
+            list: true
+          - { name: newsletterTitle, label: Newsletter heading, type: string }
+          - { name: newsletterText, label: Newsletter description, type: text }
+          - { name: footerTagline, label: Footer tagline, type: string }
+          - { name: email, label: Contact email, type: string }
+          - { name: instagram, label: Instagram URL, type: string }
+      - name: topics
+        label: Topics
+        type: object
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - { name: name, label: Topic name, type: string, required: true }
+          - { name: icon, label: Small symbol, type: string }
+          - { name: note, label: Short description, type: string }
+      - name: posts
+        label: Journal posts
+        type: object
+        description: Add, remove or drag posts to reorder them. Only one post should be marked Featured.
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - { name: title, label: Title, type: string, required: true }
+          - name: category
+            label: Category
+            type: select
+            options:
+              values: [Self-Care, Money, Love, Psychology, Real Life]
+            required: true
+          - { name: date, label: Published date, type: string }
+          - { name: readTime, label: Reading time, type: string }
+          - { name: excerpt, label: Card summary, type: text, required: true }
+          - { name: lead, label: Opening sentence, type: text }
+          - name: body
+            label: Article paragraphs
+            type: text
+            list: true
+          - name: image
+            label: Cover image
+            type: image
+            options:
+              media: blog_images
+              extensions: [jpg, jpeg, png, webp]
+              rename: safe
+          - { name: color, label: Placeholder color, type: string }
+          - { name: featured, label: Featured post, type: boolean }
