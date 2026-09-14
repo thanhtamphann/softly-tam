@@ -1,0 +1,19 @@
+{
+  "caseStudies": [
+    {
+      "slug": "example-case-study",
+      "title": "Example Case Study",
+      "summary": "A sample case study structure you can edit or delete later.",
+      "challenge": "Describe the problem, audience or opportunity.",
+      "research": "Add research notes, insights, references or discovery findings.",
+      "solution": "Explain the approach and final solution.",
+      "result": "Describe the result and what changed.",
+      "metrics": ["Example metric"],
+      "images": [],
+      "color": "#b8c9db",
+      "featured": true,
+      "published": false,
+      "order": 1
+    }
+  ]
+}
