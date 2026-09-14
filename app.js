@@ -1,5 +1,5 @@
 const fallback = {
-  site: { name: "Softly, Tam", authorName: "Tam Phan", heroEyebrow: "A quiet corner of the internet", heroTitle: "For the days you are learning to choose yourself.", heroIntro: "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.", profileImage: "", aboutTitle: "Hi, I’m Tam. I write to make life feel a little less lonely.", aboutBody: ["I’m a content writer, curious observer, and lifelong student of what makes us human.", "No perfect routines. Just thoughtful stories and grounded ideas for becoming more at home in your own life."], contactText: "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.", newsletterTitle: "A little pause, delivered gently.", newsletterText: "Occasional notes on being human, finding clarity, and creating a life that feels like yours.", footerTagline: "Thoughtful notes for a gentler, braver life.", email: "", instagram: "" },
+  site: { name: "Softly, Tam", authorName: "Tam Phan", logoImage: "", favicon: "", heroEyebrow: "A quiet corner of the internet", heroTitle: "For the days you are learning to choose yourself.", heroIntro: "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.", profileImage: "", aboutTitle: "Hi, I’m Tam. I write to make life feel a little less lonely.", aboutBody: ["I’m a content writer, curious observer, and lifelong student of what makes us human.", "No perfect routines. Just thoughtful stories and grounded ideas for becoming more at home in your own life."], contactText: "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.", newsletterTitle: "A little pause, delivered gently.", newsletterText: "Occasional notes on being human, finding clarity, and creating a life that feels like yours.", footerTagline: "Thoughtful notes for a gentler, braver life.", email: "", facebook: "", instagram: "", tiktok: "" },
   topics: [
     {name:"Self-Care", icon:"☼", note:"Rest, rituals & boundaries", color:"#f2c98c"},
     {name:"Money", icon:"◌", note:"Calm, practical finances", color:"#b9cdb7"},
@@ -46,6 +46,31 @@ function postArt(p){
 }
 function meta(p, includeDate=true){return `<div class="post-meta"><span>${escapeHtml(p.category)}</span>${includeDate&&p.date?`<span>${escapeHtml(displayDate(p.date))}</span>`:""}<span>${escapeHtml(readingTime(p))}</span></div>`}
 
+function setFavicon(url){
+  const href=(url||'assets/site-icon.svg').trim();
+  let link=document.querySelector('link[rel="icon"]');
+  if(!link){link=document.createElement('link');link.rel='icon';document.head.appendChild(link)}
+  link.href=href;
+}
+function renderBrand(s){
+  $$('[data-site-name]').forEach(el=>el.textContent=s.name);
+  $$('.brand-mark').forEach(mark=>{
+    mark.classList.toggle('has-image',Boolean(s.logoImage));
+    mark.innerHTML=s.logoImage?`<img src="${escapeHtml(s.logoImage)}" alt="">`:'S';
+  });
+  setFavicon(s.favicon);
+}
+function renderSocialLinks(s){
+  $$('.dynamic-social-links').forEach(el=>el.remove());
+  const entries=[['Facebook',s.facebook],['Instagram',s.instagram],['TikTok',s.tiktok]].filter(([,url])=>url);
+  if(!entries.length)return;
+  $$('.footer-links').forEach(footer=>{
+    const wrap=document.createElement('span');wrap.className='dynamic-social-links';
+    wrap.innerHTML=entries.map(([label,url])=>`<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`).join('');
+    footer.appendChild(wrap);
+  });
+}
+
 function renderSite(){
   const s={...fallback.site,...(data.site||{})};
   siteSettings=s;
@@ -54,7 +79,8 @@ function renderSite(){
   document.querySelector('meta[name="description"]').content=description;
   document.querySelector('meta[property="og:title"]').content=document.title;
   document.querySelector('meta[property="og:description"]').content=description;
-  $$('[data-site-name]').forEach(el=>el.textContent=s.name);
+  renderBrand(s);
+  renderSocialLinks(s);
   $$('[data-author-name]').forEach(el=>el.textContent=s.authorName || 'Tam Phan');
   $('[data-hero-eyebrow]').textContent=s.heroEyebrow;
   $('[data-hero-title]').textContent=s.heroTitle;
@@ -68,7 +94,7 @@ function renderSite(){
   $('[data-newsletter-text]').textContent=s.newsletterText;
   $('[data-footer-tagline]').textContent=s.footerTagline;
   $$('[data-contact-email]').forEach(el=>{if(s.email){el.href=`mailto:${s.email}`;el.hidden=false}else{el.hidden=true}});
-  const insta=$('[data-social-instagram]'); if(insta){if(s.instagram){insta.href=s.instagram;insta.hidden=false}else{insta.hidden=true}}
+  const insta=$('[data-social-instagram]'); if(insta){insta.hidden=true}
 }
 
 function renderFrontPage(){
