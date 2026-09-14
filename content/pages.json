@@ -1,0 +1,18 @@
+{
+  "pages": [
+    {
+      "slug": "faq",
+      "title": "FAQ",
+      "excerpt": "A sample page you can edit, publish or delete from Pages CMS.",
+      "content": "<h2>Frequently asked questions</h2><p>Add your own page content here.</p>",
+      "image": "",
+      "seoTitle": "FAQ",
+      "seoDescription": "Frequently asked questions.",
+      "socialImage": "",
+      "published": false,
+      "showInMenu": false,
+      "menuLabel": "FAQ",
+      "order": 1
+    }
+  ]
+}
