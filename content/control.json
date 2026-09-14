@@ -6,7 +6,7 @@
     "logoImage": "",
     "favicon": "",
     "profileImage": "",
-    "email": "thanhtamphannforwork@gmail.com",
+    "email": "",
     "cvPdf": "",
     "defaultLanguage": "en"
   },
@@ -43,16 +43,15 @@
     ]
   },
   "contact": {
-    "heading": "Writing collaborations, brand stories & kind hellos.",
-    "text": "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.",
-    "formEnabled": true,
-    "recipientEmail": "thanhtamphannforwork@gmail.com",
+    "heading": "Let’s stay connected.",
+    "text": "For collaborations, story ideas, partnerships, or a quick hello, reach me through one of the social channels below.",
+    "formEnabled": false,
+    "recipientEmail": "",
     "channels": [
-      {"label":"Email","icon":"✉","url":"mailto:thanhtamphannforwork@gmail.com","note":"thanhtamphannforwork@gmail.com","enabled":true,"showInContact":true,"showInFooter":true,"newTab":false},
       {"label":"Telegram","icon":"✈","url":"https://t.me/thanhtamphann","note":"@thanhtamphann","enabled":true,"showInContact":true,"showInFooter":true,"newTab":true},
-      {"label":"Instagram","icon":"◎","url":"","note":"","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true},
-      {"label":"Facebook","icon":"f","url":"","note":"","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true},
-      {"label":"TikTok","icon":"♪","url":"","note":"","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true}
+      {"label":"Instagram","icon":"◎","url":"","note":"Add your link in CMS","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true},
+      {"label":"Facebook","icon":"f","url":"","note":"Add your link in CMS","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true},
+      {"label":"TikTok","icon":"♪","url":"","note":"Add your link in CMS","enabled":true,"showInContact":true,"showInFooter":false,"newTab":true}
     ]
   },
   "design": {
@@ -71,7 +70,7 @@
     "siteTitle": "TAMORA — Notes for a gentler life",
     "metaDescription": "Thoughtful writing about self-care, money, love, psychology, and becoming.",
     "socialImage": "",
-    "canonicalUrl": "",
+    "canonicalUrl": "https://thanhtamphann.github.io/tamora/",
     "twitterHandle": ""
   }
 }
