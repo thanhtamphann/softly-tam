@@ -1,13 +1,12 @@
 (() => {
   const $ = (s, root = document) => root.querySelector(s);
-  const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 
   function addStyles() {
     if ($('#contact-enhancements-styles')) return;
     const link = document.createElement('link');
     link.id = 'contact-enhancements-styles';
     link.rel = 'stylesheet';
-    link.href = 'contact-enhancements.css?v=1';
+    link.href = 'contact-enhancements.css?v=2';
     document.head.appendChild(link);
   }
 
@@ -73,7 +72,7 @@
             </div>
             <div class="contact-form-footer"><button class="button primary" type="submit">Send message <span>→</span></button><p>Your message will be delivered to my inbox.</p></div>
             <p class="contact-privacy">Your details are used only to reply to your message. See the <a href="privacy.html">privacy note</a>.</p>
-          </form>` : `<div class="contact-empty"><p>Add your Gmail address in Pages CMS → <strong>Website content → Brand, introduction & contact → Contact email</strong> to activate this form.</p></div>`}
+          </form>` : `<div class="contact-empty"><p>Contact form setup is ready. Add your Gmail address in Pages CMS under <strong>Website content → Brand, introduction & contact → Contact email</strong> to activate message delivery.</p></div>`}
         </div>
       </div>`;
 
@@ -111,11 +110,17 @@
     document.body.appendChild(a);
   }
 
-  document.addEventListener('DOMContentLoaded', async () => {
+  async function startContactEnhancements() {
     addStyles();
     const settings = await getSiteSettings();
     buildContactSection(settings);
     updateFooterSocials(settings);
     addFloatingContact();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startContactEnhancements, { once: true });
+  } else {
+    startContactEnhancements();
+  }
 })();
