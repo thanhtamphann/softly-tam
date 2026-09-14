@@ -1,17 +1,18 @@
-name: Update blog dates
+name: Update blog metadata
 
 on:
   push:
     branches: [main]
     paths:
       - content/site.json
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  update-dates:
-    if: ${{ !contains(github.event.head_commit.message, 'Auto update blog dates') }}
+  update-blog:
+    if: ${{ !contains(github.event.head_commit.message || '', 'Auto update blog metadata') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Update dates for changed posts
+      - name: Update dates, brand and sitemap
         run: |
           node <<'NODE'
           const fs = require('fs');
@@ -28,32 +29,34 @@ jobs:
           const path = 'content/site.json';
           const current = JSON.parse(fs.readFileSync(path, 'utf8'));
           let previous = { posts: [] };
-          try {
-            previous = JSON.parse(cp.execSync(`git show HEAD^:${path}`, {encoding:'utf8'}));
-          } catch {}
+          try { previous = JSON.parse(cp.execSync(`git show HEAD^:${path}`, {encoding:'utf8'})); } catch {}
+          current.site = current.site || {};
+          current.site.name = 'TAMORA';
+          delete current.site.newsletterTitle;
+          delete current.site.newsletterText;
+          delete current.site.newsletterUrl;
+          delete current.site.email;
           const oldMap = new Map((previous.posts || []).map(p => [p.slug, p]));
           const today = new Date().toISOString().slice(0,10);
-          const clean = p => {
-            const x = JSON.parse(JSON.stringify(p));
-            delete x.updatedDate;
-            return x;
-          };
-          let changed = false;
+          const clean = p => { const x = JSON.parse(JSON.stringify(p)); delete x.updatedDate; return x; };
           for (const post of current.posts || []) {
             const old = oldMap.get(post.slug);
-            if (!post.date) { post.date = today; changed = true; }
-            if (old && JSON.stringify(clean(post)) !== JSON.stringify(clean(old)) && post.updatedDate !== today) {
-              post.updatedDate = today;
-              changed = true;
-            }
+            if (!post.date) post.date = today;
+            if (old && JSON.stringify(clean(post)) !== JSON.stringify(clean(old))) post.updatedDate = today;
           }
-          if (changed) fs.writeFileSync(path, JSON.stringify(current, null, 2) + '\n');
+          fs.writeFileSync(path, JSON.stringify(current, null, 2) + '\n');
+          const base = 'https://thanhtamphann.github.io/tamora/';
+          const published = (current.posts || []).filter(p => String(p.status || 'published').toLowerCase() !== 'draft');
+          const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+          const urls = [base, ...published.map(p => `${base}story.html?story=${encodeURIComponent(p.slug)}`)];
+          const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `  <url><loc>${esc(u)}</loc></url>`).join('\n') + '\n</urlset>\n';
+          fs.writeFileSync('sitemap.xml', xml);
           NODE
-      - name: Commit automatic dates
+      - name: Commit automatic metadata
         run: |
-          if git diff --quiet -- content/site.json; then exit 0; fi
+          if git diff --quiet -- content/site.json sitemap.xml; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/site.json
-          git commit -m "Auto update blog dates"
+          git add content/site.json sitemap.xml
+          git commit -m "Auto update blog metadata"
           git push
