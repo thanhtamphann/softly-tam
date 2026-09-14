@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Softly, Tam — thoughtful notes on self-care, money, love, psychology, and becoming." />
+    <meta name="theme-color" content="#f7f0e6" />
+    <title>Softly, Tam — Notes for a gentler life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Softly, Tam home"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <a href="#journal">Journal</a><a href="#topics">Topics</a><a href="#about">About</a><a href="#letters">Letters</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-hero-eyebrow>A quiet corner of the internet</p>
+          <h1 data-hero-title>For the days you are learning to choose yourself.</h1>
+          <p class="hero-intro" data-hero-intro>Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.</p>
+          <div class="hero-actions"><a class="button primary" href="#journal">Start reading <span>↗</span></a><a class="text-link" href="#about">Meet Tam <span>→</span></a></div>
+        </div>
+        <div class="hero-art reveal" aria-label="Photo placeholder editable in Pages CMS">
+          <div class="sun"></div><div class="arch-card"><img data-profile-image alt="Portrait of Tam" hidden /><div class="portrait-placeholder"><span>Your photo</span><small>Add it in Pages CMS</small></div></div>
+          <p class="hand-note">slow mornings,<br />clearer thoughts ✦</p>
+          <span class="spark spark-one">✦</span><span class="spark spark-two">✧</span>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="Journal themes"><div>SELF-CARE <i>✦</i> MONEY <i>✦</i> LOVE <i>✦</i> PSYCHOLOGY <i>✦</i> REAL LIFE <i>✦</i> SELF-CARE <i>✦</i> MONEY <i>✦</i> LOVE <i>✦</i></div></section>
+
+      <section class="featured section-shell" id="journal">
+        <div class="section-heading reveal"><div><p class="eyebrow">From the journal</p><h2>Words to come<br /><em>home to.</em></h2></div><p>Small shifts, honest questions, and practical ideas for living with more intention.</p></div>
+        <div class="featured-layout" id="featured-post"></div>
+        <div class="post-grid" id="post-grid"></div>
+        <div class="center"><button class="button secondary" id="load-more">View more stories</button></div>
+      </section>
+
+      <section class="topics" id="topics">
+        <div class="section-shell">
+          <div class="section-heading reveal"><div><p class="eyebrow">Browse by feeling</p><h2>What do you<br /><em>need today?</em></h2></div></div>
+          <div class="topic-grid" id="topic-grid"></div>
+        </div>
+      </section>
+
+      <section class="about section-shell" id="about">
+        <div class="about-art reveal"><div class="paper paper-back"></div><div class="paper paper-front"><p>“A soft life is not a life without courage.”</p><span>— a note to self</span></div><span class="flower">❋</span></div>
+        <div class="about-copy reveal"><p class="eyebrow">Behind the words</p><h2 data-about-title>Hi, I’m Tam.<br /><em>I write to make life feel a little less lonely.</em></h2><div data-about-body><p>I’m a content writer, curious observer, and lifelong student of what makes us human. This space is where I turn lived moments and careful research into words you can actually use.</p><p>No perfect routines. No one-size-fits-all answers. Just thoughtful stories and grounded ideas for becoming more at home in your own life.</p></div><div class="signature">Tam <span>♡</span></div></div>
+      </section>
+
+      <section class="newsletter" id="letters">
+        <div class="newsletter-inner reveal"><span class="mail-icon">✉</span><p class="eyebrow">A letter for your Sunday</p><h2 data-newsletter-title>A little pause,<br /><em>delivered gently.</em></h2><p data-newsletter-text>Occasional notes on being human, finding clarity, and creating a life that feels like yours.</p><form id="newsletter-form"><label class="sr-only" for="email">Email address</label><input id="email" type="email" placeholder="Your email address" required /><button type="submit">Join the letters →</button></form><small>No noise. Just something worth opening.</small></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div><a class="brand" href="#top"><span class="brand-mark">S</span><span data-site-name>Softly, Tam</span></a><p data-footer-tagline>Thoughtful notes for a gentler, braver life.</p></div><div class="footer-links"><a href="#journal">Journal</a><a href="#about">About</a><a data-social-instagram href="#">Instagram</a><a data-contact-email href="mailto:thanhtamphannforwork@gmail.com">Email</a></div><p class="copyright">© <span id="year"></span> Tam Phan. Made with care.</p></footer>
+
+    <dialog id="article-dialog"><button class="dialog-close" aria-label="Close article">×</button><article id="article-content"></article></dialog>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
