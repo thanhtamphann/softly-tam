@@ -22,7 +22,7 @@
     {"label":"Topics","url":"#topics","enabled":true,"newTab":false},
     {"label":"About","url":"#about","enabled":true,"newTab":false},
     {"label":"Contact","url":"#contact","enabled":true,"newTab":false},
-    {"label":"Letters","url":"#letters","enabled":true,"newTab":false}
+    {"label":"Letters","url":"#letters","enabled":false,"newTab":false}
   ],
   "ctaButtons": [
     {"label":"Contact","url":"#contact","style":"primary","enabled":false,"newTab":false}
@@ -39,7 +39,7 @@
       {"id":"topics","label":"Topics","enabled":true,"order":5},
       {"id":"about","label":"About","enabled":true,"order":6},
       {"id":"contact","label":"Contact","enabled":true,"order":7},
-      {"id":"newsletter","label":"Newsletter","enabled":true,"order":8}
+      {"id":"newsletter","label":"Newsletter","enabled":false,"order":8}
     ]
   },
   "contact": {
