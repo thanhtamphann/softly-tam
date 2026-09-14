@@ -6,7 +6,7 @@
     const link = document.createElement('link');
     link.id = 'contact-enhancements-styles';
     link.rel = 'stylesheet';
-    link.href = 'contact-enhancements.css?v=2';
+    link.href = 'contact-enhancements.css?v=3';
     document.head.appendChild(link);
   }
 
@@ -111,6 +111,7 @@
   }
 
   async function startContactEnhancements() {
+    if ($('.contact-hub')) return;
     addStyles();
     const settings = await getSiteSettings();
     buildContactSection(settings);
@@ -118,9 +119,21 @@
     addFloatingContact();
   }
 
+  function waitForCoreRender() {
+    let checks = 0;
+    const timer = setInterval(() => {
+      checks += 1;
+      const year = $('#year');
+      if ((year && year.textContent.trim()) || checks >= 40) {
+        clearInterval(timer);
+        startContactEnhancements();
+      }
+    }, 100);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startContactEnhancements, { once: true });
+    document.addEventListener('DOMContentLoaded', waitForCoreRender, { once: true });
   } else {
-    startContactEnhancements();
+    waitForCoreRender();
   }
 })();
