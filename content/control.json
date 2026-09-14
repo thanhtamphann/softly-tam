@@ -1,0 +1,71 @@
+{
+  "site": {
+    "name": "Nerdy, Tam",
+    "authorName": "Tam Phan",
+    "tagline": "Thoughtful notes for a gentler, braver life.",
+    "logoImage": "",
+    "favicon": "",
+    "profileImage": "",
+    "email": "",
+    "cvPdf": "",
+    "defaultLanguage": "en"
+  },
+  "announcement": {
+    "enabled": false,
+    "text": "Available for thoughtful collaborations and new opportunities.",
+    "linkLabel": "Say hello",
+    "url": "#contact",
+    "newTab": false
+  },
+  "menu": [
+    {"label":"Journal","url":"#journal","enabled":true,"newTab":false},
+    {"label":"Topics","url":"#topics","enabled":true,"newTab":false},
+    {"label":"About","url":"#about","enabled":true,"newTab":false},
+    {"label":"Contact","url":"#contact","enabled":true,"newTab":false},
+    {"label":"Letters","url":"#letters","enabled":true,"newTab":false}
+  ],
+  "ctaButtons": [
+    {"label":"Contact","url":"#contact","style":"primary","enabled":true,"newTab":false}
+  ],
+  "homepage": {
+    "heroEyebrow": "A quiet corner of the internet",
+    "heroTitle": "For the days you are learning to choose yourself.",
+    "heroIntro": "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.",
+    "sections": [
+      {"id":"hero","label":"Hero","enabled":true,"order":1},
+      {"id":"projects","label":"Projects / Videos","enabled":false,"order":2},
+      {"id":"blog","label":"Journal / Blog","enabled":true,"order":3},
+      {"id":"caseStudies","label":"Case Studies","enabled":false,"order":4},
+      {"id":"topics","label":"Topics","enabled":true,"order":5},
+      {"id":"about","label":"About","enabled":true,"order":6},
+      {"id":"contact","label":"Contact","enabled":true,"order":7},
+      {"id":"newsletter","label":"Newsletter","enabled":true,"order":8}
+    ]
+  },
+  "contact": {
+    "heading": "Writing collaborations, brand stories & kind hellos.",
+    "text": "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.",
+    "formEnabled": true,
+    "recipientEmail": "",
+    "channels": []
+  },
+  "design": {
+    "theme": "editorial",
+    "defaultMode": "light",
+    "allowVisitorDarkMode": true,
+    "primaryColor": "#342e29",
+    "backgroundColor": "#fbf7f0",
+    "surfaceColor": "#f4eadc",
+    "accentColor": "#d98168",
+    "mutedColor": "#776b61",
+    "animation": "subtle",
+    "animationSpeed": "normal"
+  },
+  "seo": {
+    "siteTitle": "Nerdy, Tam — Notes for a gentler life",
+    "metaDescription": "Thoughtful writing about self-care, money, love, psychology, and becoming.",
+    "socialImage": "",
+    "canonicalUrl": "",
+    "twitterHandle": ""
+  }
+}
