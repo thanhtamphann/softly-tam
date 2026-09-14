@@ -1,0 +1,21 @@
+{
+  "projects": [
+    {
+      "slug": "example-editorial-content-project",
+      "title": "Editorial Content Project",
+      "category": "Content & Storytelling",
+      "description": "An example project card you can edit or delete in Pages CMS.",
+      "thumbnail": "",
+      "gallery": [],
+      "videoUrl": "",
+      "views": "",
+      "likes": "",
+      "ctaLabel": "View project",
+      "ctaUrl": "",
+      "color": "#e7afa8",
+      "featured": true,
+      "published": true,
+      "order": 1
+    }
+  ]
+}
