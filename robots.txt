@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thanhtamphann.github.io/softly-tam/sitemap.xml
+Sitemap: https://thanhtamphann.github.io/tamora/sitemap.xml
