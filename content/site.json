@@ -1,0 +1,34 @@
+{
+  "site": {
+    "name": "Softly, Tam",
+    "heroEyebrow": "A quiet corner of the internet",
+    "heroTitle": "For the days you are learning to choose yourself.",
+    "heroIntro": "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.",
+    "profileImage": "",
+    "aboutTitle": "Hi, I’m Tam. I write to make life feel a little less lonely.",
+    "aboutBody": [
+      "I’m a content writer, curious observer, and lifelong student of what makes us human. This space is where I turn lived moments and careful research into words you can actually use.",
+      "No perfect routines. No one-size-fits-all answers. Just thoughtful stories and grounded ideas for becoming more at home in your own life."
+    ],
+    "newsletterTitle": "A little pause, delivered gently.",
+    "newsletterText": "Occasional notes on being human, finding clarity, and creating a life that feels like yours.",
+    "footerTagline": "Thoughtful notes for a gentler, braver life.",
+    "email": "",
+    "instagram": ""
+  },
+  "topics": [
+    {"name":"Self-Care","icon":"☼","note":"Rest, rituals & boundaries"},
+    {"name":"Money","icon":"◌","note":"Calm, practical finances"},
+    {"name":"Love","icon":"♡","note":"Connection without losing you"},
+    {"name":"Psychology","icon":"⌁","note":"Understanding your inner world"},
+    {"name":"Real Life","icon":"✦","note":"Personal essays & honest notes"}
+  ],
+  "posts": [
+    {"title":"You Don’t Need to Earn Your Rest","category":"Self-Care","date":"September 12, 2026","readTime":"6 min read","excerpt":"Why slowing down can feel so uncomfortable—and how to rest before your body forces you to.","lead":"Rest is not a reward for becoming exhausted. It is part of the work of being alive.","body":["For a long time, I treated rest like a finish line. I could reach it after every message was answered, every task was checked, and everyone else was comfortable. The problem was that the finish line kept moving.","Real rest begins when we stop asking whether we have done enough to deserve it. It can be ten unhurried minutes, a meal without a screen, or one honest no.","A gentler life is built in small permissions. Today, let rest be one of them."],"color":"#dfc4a9","image":"","featured":true},
+    {"title":"A Simple Money Date With Yourself","category":"Money","date":"September 7, 2026","readTime":"5 min read","excerpt":"A shame-free monthly ritual to understand your money and make one clear next decision.","lead":"You do not need to love spreadsheets to feel safe with money.","body":["Choose one quiet hour, make a drink you like, and open your accounts without judgment. The first goal is simply to know what is true.","Write down what came in, what went out, and which expense surprised you. Then choose one small action for next month.","Clarity grows when we meet our numbers regularly, with curiosity instead of criticism."],"color":"#d5d8bf","image":""},
+    {"title":"Love Should Not Require Self-Abandonment","category":"Love","date":"August 30, 2026","readTime":"7 min read","excerpt":"The quiet difference between compromise and disappearing inside a relationship.","lead":"Healthy love makes room for two whole people.","body":["Compromise asks both people to move. Self-abandonment asks one person to vanish.","Notice the small moments: Do you edit every feeling before speaking? Are your needs always framed as too much? Can you disagree and remain emotionally safe?","Love can be tender and still have boundaries. In fact, that may be what allows tenderness to last."],"color":"#e6beb5","image":""},
+    {"title":"Why We Overthink After a Good Day","category":"Psychology","date":"August 22, 2026","readTime":"6 min read","excerpt":"When calm feels unfamiliar, the mind sometimes searches for a problem. Here is why.","lead":"Sometimes anxiety appears not because something is wrong, but because peace is unfamiliar.","body":["The nervous system learns patterns. If uncertainty has been normal for a long time, a quiet day can feel suspicious.","Naming this response creates a little space around it. You can say: nothing is wrong right now; my mind is searching for an old pattern.","You do not have to argue with every thought. Let some pass without turning them into instructions."],"color":"#c7cfcb","image":""},
+    {"title":"The Year I Stopped Performing My Life","category":"Real Life","date":"August 14, 2026","readTime":"8 min read","excerpt":"What changed when I stopped asking how my choices looked and started asking how they felt.","lead":"A beautiful-looking life and a life that feels like yours are not always the same thing.","body":["I had become very good at choosing what sounded impressive. I was less practiced at noticing what brought me alive.","The shift was not dramatic. It began with quieter choices: work I wanted to learn from, people I did not have to perform around, and mornings that belonged to me.","We can change direction without turning the old path into a mistake."],"color":"#dccfb9","image":""},
+    {"title":"Five Tiny Ways to Feel More Like Yourself","category":"Self-Care","date":"August 4, 2026","readTime":"4 min read","excerpt":"Small anchors for the weeks when you feel scattered, tired, or far away from yourself.","lead":"Coming back to yourself does not always require a reinvention.","body":["Wear the color you keep saving. Take the familiar route without headphones. Make the food that tastes like home.","Send one honest message. Put one unfinished expectation down.","Identity is often restored through small acts of recognition."],"color":"#edd7b8","image":""}
+  ]
+}
