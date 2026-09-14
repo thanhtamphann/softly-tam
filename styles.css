@@ -58,30 +58,30 @@ body{background:
 
 /* Homepage opening animation */
 .hero-word{display:inline-block;will-change:transform,opacity,filter}
-.hero-animate .hero-word{opacity:0;filter:blur(7px);transform:translateY(.72em) rotate(2deg)}
-.hero-animate.is-entered .hero-word{animation:hero-word-in .82s cubic-bezier(.2,.72,.18,1) forwards;animation-delay:calc(90ms + var(--word-index) * 62ms)}
-.hero-animate .hero-copy .eyebrow,.hero-animate .hero-intro,.hero-animate .hero-actions{opacity:0;transform:translateY(16px)}
-.hero-animate.is-entered .hero-copy .eyebrow{animation:hero-detail-in .62s ease forwards .08s}
-.hero-animate.is-entered .hero-intro{animation:hero-detail-in .7s ease forwards .78s}
-.hero-animate.is-entered .hero-actions{animation:hero-detail-in .7s ease forwards .94s}
-.hero-animate .arch-card{opacity:0;clip-path:inset(0 0 100% 0 round 190px 190px 24px 24px);transform:translateY(24px)}
-.hero-animate.is-entered .arch-card{animation:hero-arch-in 1.05s cubic-bezier(.2,.78,.2,1) forwards .24s}
-.hero-animate .sun{opacity:0;transform:scale(.72)}
-.hero-animate.is-entered .sun{animation:sun-arrive .85s cubic-bezier(.2,.8,.2,1) forwards .12s,sun-breathe 5.8s ease-in-out infinite 1.2s}
-.hero-animate .hand-note{opacity:0;transform:translate(-12px,14px) rotate(-10deg)}
-.hero-animate.is-entered .hand-note{animation:note-arrive .72s ease forwards 1.02s,note-float 4.8s ease-in-out infinite 1.8s}
+.hero-animate .hero-word{opacity:0;filter:blur(2px);transform:translateY(.28em)}
+.hero-animate.is-entered .hero-word{animation:hero-word-in .72s cubic-bezier(.2,.72,.18,1) forwards;animation-delay:calc(70ms + var(--word-index) * 42ms)}
+.hero-animate .hero-copy .eyebrow,.hero-animate .hero-intro,.hero-animate .hero-actions{opacity:0;transform:translateY(8px)}
+.hero-animate.is-entered .hero-copy .eyebrow{animation:hero-detail-in .58s ease forwards .06s}
+.hero-animate.is-entered .hero-intro{animation:hero-detail-in .64s ease forwards .54s}
+.hero-animate.is-entered .hero-actions{animation:hero-detail-in .64s ease forwards .68s}
+.hero-animate .arch-card{opacity:.25;clip-path:inset(0 0 8% 0 round 190px 190px 24px 24px);transform:translateY(10px)}
+.hero-animate.is-entered .arch-card{animation:hero-arch-in .9s cubic-bezier(.2,.78,.2,1) forwards .16s}
+.hero-animate .sun{opacity:.25;transform:scale(.92)}
+.hero-animate.is-entered .sun{animation:sun-arrive .72s cubic-bezier(.2,.8,.2,1) forwards .08s,sun-breathe 7s ease-in-out infinite 1s}
+.hero-animate .hand-note{opacity:0;transform:translate(-4px,6px) rotate(-8.5deg)}
+.hero-animate.is-entered .hand-note{animation:note-arrive .66s ease forwards .72s,note-float 6.5s ease-in-out infinite 1.5s}
 .hero-animate .spark{opacity:0}
-.hero-animate.is-entered .spark-one{animation:spark-twinkle 2.9s ease-in-out infinite 1.15s}
-.hero-animate.is-entered .spark-two{animation:spark-twinkle 3.4s ease-in-out infinite 1.48s}
-.hero-actions .primary span{display:inline-block;transition:transform .28s ease}.hero-actions .primary:hover span{transform:translate(3px,-3px)}
+.hero-animate.is-entered .spark-one{animation:spark-twinkle 4.4s ease-in-out infinite .85s}
+.hero-animate.is-entered .spark-two{animation:spark-twinkle 5.1s ease-in-out infinite 1.08s}
+.hero-actions .primary span{display:inline-block;transition:transform .28s ease}.hero-actions .primary:hover span{transform:translate(2px,-2px)}
 @keyframes hero-word-in{to{opacity:1;filter:blur(0);transform:translateY(0) rotate(0)}}
 @keyframes hero-detail-in{to{opacity:1;transform:translateY(0)}}
 @keyframes hero-arch-in{to{opacity:1;clip-path:inset(0 0 0 0 round 190px 190px 24px 24px);transform:translateY(0)}}
 @keyframes sun-arrive{to{opacity:1;transform:scale(1)}}
-@keyframes sun-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+@keyframes sun-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
 @keyframes note-arrive{to{opacity:1;transform:translate(0,0) rotate(-7deg)}}
-@keyframes note-float{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-7px) rotate(-5.5deg)}}
-@keyframes spark-twinkle{0%,100%{opacity:.35;transform:scale(.78) rotate(0)}50%{opacity:1;transform:scale(1.16) rotate(18deg)}}
+@keyframes note-float{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-3px) rotate(-6.5deg)}}
+@keyframes spark-twinkle{0%,100%{opacity:.42;transform:scale(.92) rotate(0)}50%{opacity:.82;transform:scale(1.04) rotate(8deg)}}
 @media(prefers-reduced-motion:reduce){.hero-animate .hero-word,.hero-animate .hero-copy .eyebrow,.hero-animate .hero-intro,.hero-animate .hero-actions,.hero-animate .arch-card,.hero-animate .sun,.hero-animate .hand-note,.hero-animate .spark{animation:none!important;opacity:1;filter:none;transform:none;clip-path:none}.hero-animate .hand-note{transform:rotate(-7deg)}}
 
 /* Reliable content updates and clearer interaction states */
