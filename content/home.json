@@ -8,7 +8,7 @@
     "values": ["Research-led", "Human-first", "Written with care"]
   },
   "newsletter": {
-    "enabled": true,
+    "enabled": false,
     "eyebrow": "A letter for your Sunday",
     "title": "A little pause, delivered gently.",
     "text": "Occasional notes on being human, finding clarity, and creating a life that feels like yours.",
