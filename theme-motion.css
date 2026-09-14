@@ -15,140 +15,23 @@
   --dark-line:rgba(244,237,231,.15);
   --dark-accent:#df8f75;
 }
-
-body:not(.color-mode-dark){
-  --ink:var(--light-ink);
-  --milk:var(--light-bg);
-  --cream:var(--light-surface);
-  --white:var(--light-white);
-  --muted:var(--light-muted);
-  --line:var(--light-line);
-  --coral:var(--light-accent);
-  color-scheme:light;
-}
-
-body.color-mode-dark{
-  --ink:var(--dark-ink);
-  --milk:var(--dark-bg);
-  --cream:var(--dark-surface);
-  --white:var(--dark-white);
-  --muted:var(--dark-muted);
-  --line:var(--dark-line);
-  --coral:var(--dark-accent);
-  --clay:#d3a38a;
-  --beige:#352d28;
-  --sand:#876f61;
-  color-scheme:dark;
-}
-
-body, .site-header, .masthead-row, .utility-row, .newsletter, .newsletter-inner,
-.topic-card, .post-card, .project-card, .case-card, .contact-card, .paper,
-.search-box input, .filter-pill, .theme-toggle-unified, .article-page,
-.related-card, .policy-note{
-  transition:background-color .28s ease,color .28s ease,border-color .28s ease,box-shadow .28s ease;
-}
-
-body.color-mode-dark .site-header.newspaper-header,
-body.color-mode-dark .site-header,
-body.color-mode-dark .article-header{
-  background:rgba(29,26,24,.97);
-}
-body.color-mode-dark .topic-card,
-body.color-mode-dark .newsletter-inner,
-body.color-mode-dark .project-card,
-body.color-mode-dark .case-card,
-body.color-mode-dark .contact-card,
-body.color-mode-dark .paper-front{
-  background:var(--white);
-}
-body.color-mode-dark .grain{opacity:.02}
-body.color-mode-dark img{filter:none}
-
-.theme-toggle-unified{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  min-height:34px;
-  padding:7px 11px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:transparent;
-  color:var(--ink);
-  font:600 10px/1 var(--sans);
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  cursor:pointer;
-}
-.theme-toggle-unified:hover{background:var(--cream)}
-.theme-toggle-unified:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
-.theme-toggle-unified .theme-icon{font-size:13px;line-height:1}
-
-/* Calm reveal: a tiny rise and fade only. */
-body.motion-calm .reveal{
-  opacity:0;
-  transform:translateY(6px)!important;
-  transition:opacity .52s ease,transform .52s ease!important;
-}
-body.motion-calm .reveal.visible{
-  opacity:1;
-  transform:none!important;
-}
-
-/* Gentle pointer feedback without dramatic movement. */
-body.motion-calm .lead-story,
-body.motion-calm .rail-story,
-body.motion-calm .section-lead-story,
-body.motion-calm .compact-story,
-body.motion-calm .long-read-card,
-body.motion-calm .post-card,
-body.motion-calm .topic-card,
-body.motion-calm .related-card,
-body.motion-calm .project-card,
-body.motion-calm .case-card{
-  transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease,border-color .22s ease;
-}
-body.motion-calm .lead-story:hover,
-body.motion-calm .section-lead-story:hover,
-body.motion-calm .long-read-card:hover,
-body.motion-calm .post-card:hover,
-body.motion-calm .related-card:hover,
-body.motion-calm .project-card:hover,
-body.motion-calm .case-card:hover{
-  transform:translateY(-2px)!important;
-  box-shadow:0 9px 24px rgba(60,45,35,.055);
-}
-body.motion-calm .rail-story:hover,
-body.motion-calm .compact-story:hover,
-body.motion-calm .topic-card:hover{
-  transform:translateY(-1px)!important;
-}
-body.motion-calm .post-art img,
-body.motion-calm .long-read-image img,
-body.motion-calm .project-card img,
-body.motion-calm .case-card img{
-  transition:transform .36s ease,filter .36s ease;
-}
-body.motion-calm .lead-story:hover .post-art img,
-body.motion-calm .rail-story:hover .post-art img,
-body.motion-calm .section-lead-story:hover .post-art img,
-body.motion-calm .long-read-card:hover .long-read-image img,
-body.motion-calm .post-card:hover .post-art img,
-body.motion-calm .project-card:hover img,
-body.motion-calm .case-card:hover img{
-  transform:scale(1.012);
-}
-
-/* Ticker remains moving, but slowly and evenly. */
-.marquee div{animation:scroll 34s linear infinite!important}
-.marquee:hover div{animation-play-state:paused}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
-  .marquee div{animation:none!important}
-  .reveal{opacity:1!important;transform:none!important}
-}
-
-@media(max-width:760px){
-  .theme-toggle-unified{min-height:32px;padding:7px 10px}
-}
+body:not(.color-mode-dark){--ink:var(--light-ink);--milk:var(--light-bg);--cream:var(--light-surface);--white:var(--light-white);--muted:var(--light-muted);--line:var(--light-line);--coral:var(--light-accent);color-scheme:light}
+body.color-mode-dark{--ink:var(--dark-ink);--milk:var(--dark-bg);--cream:var(--dark-surface);--white:var(--dark-white);--muted:var(--dark-muted);--line:var(--dark-line);--coral:var(--dark-accent);--clay:#d3a38a;--beige:#352d28;--sand:#876f61;color-scheme:dark}
+body,.site-header,.masthead-row,.utility-row,.newsletter,.newsletter-inner,.topic-card,.post-card,.project-card,.case-card,.contact-card,.paper,.search-box input,.filter-pill,.theme-toggle-unified,.article-page,.related-card,.policy-note{transition:background-color .28s ease,color .28s ease,border-color .28s ease,box-shadow .28s ease}
+body.color-mode-dark .site-header.newspaper-header,body.color-mode-dark .site-header,body.color-mode-dark .article-header{background:rgba(29,26,24,.97)}
+body.color-mode-dark .topic-card,body.color-mode-dark .newsletter-inner,body.color-mode-dark .project-card,body.color-mode-dark .case-card,body.color-mode-dark .contact-card,body.color-mode-dark .paper-front{background:var(--white)}
+body.color-mode-dark .grain{opacity:.02}body.color-mode-dark img{filter:none}
+.theme-toggle-unified{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:600 10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}.theme-toggle-unified:hover{background:var(--cream)}.theme-toggle-unified:focus-visible{outline:2px solid var(--coral);outline-offset:2px}.theme-toggle-unified .theme-icon{font-size:13px;line-height:1}
+body.motion-calm .reveal{opacity:0;transform:translateY(6px)!important;transition:opacity .52s ease,transform .52s ease!important}body.motion-calm .reveal.visible{opacity:1;transform:none!important}
+body.motion-fade .reveal{opacity:0;transform:none!important;transition:opacity .6s ease!important}body.motion-fade .reveal.visible{opacity:1!important}
+body.motion-none .reveal{opacity:1!important;transform:none!important;transition:none!important}
+body.motion-slow .reveal{transition-duration:.8s!important}
+body.motion-calm .lead-story,body.motion-calm .rail-story,body.motion-calm .section-lead-story,body.motion-calm .compact-story,body.motion-calm .post-card,body.motion-calm .topic-card,body.motion-calm .related-card,body.motion-calm .project-card,body.motion-calm .case-card,body.motion-fade .lead-story,body.motion-fade .rail-story,body.motion-fade .section-lead-story,body.motion-fade .compact-story,body.motion-fade .post-card,body.motion-fade .topic-card,body.motion-fade .related-card,body.motion-fade .project-card,body.motion-fade .case-card{transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease,border-color .22s ease}
+body.motion-calm .lead-story:hover,body.motion-calm .section-lead-story:hover,body.motion-calm .post-card:hover,body.motion-calm .related-card:hover,body.motion-calm .project-card:hover,body.motion-calm .case-card:hover,body.motion-fade .lead-story:hover,body.motion-fade .section-lead-story:hover,body.motion-fade .post-card:hover,body.motion-fade .related-card:hover,body.motion-fade .project-card:hover,body.motion-fade .case-card:hover{transform:translateY(-2px)!important;box-shadow:0 9px 24px rgba(60,45,35,.055)}
+body.motion-calm .rail-story:hover,body.motion-calm .compact-story:hover,body.motion-calm .topic-card:hover,body.motion-fade .rail-story:hover,body.motion-fade .compact-story:hover,body.motion-fade .topic-card:hover{transform:translateY(-1px)!important}
+body.motion-calm .post-art img,body.motion-calm .project-card img,body.motion-calm .case-card img,body.motion-fade .post-art img,body.motion-fade .project-card img,body.motion-fade .case-card img{transition:transform .36s ease,filter .36s ease}
+body.motion-calm .lead-story:hover .post-art img,body.motion-calm .rail-story:hover .post-art img,body.motion-calm .section-lead-story:hover .post-art img,body.motion-calm .post-card:hover .post-art img,body.motion-calm .project-card:hover img,body.motion-calm .case-card:hover img,body.motion-fade .lead-story:hover .post-art img,body.motion-fade .rail-story:hover .post-art img,body.motion-fade .section-lead-story:hover .post-art img,body.motion-fade .post-card:hover .post-art img,body.motion-fade .project-card:hover img,body.motion-fade .case-card:hover img{transform:scale(1.012)}
+body.motion-none .lead-story,body.motion-none .rail-story,body.motion-none .section-lead-story,body.motion-none .compact-story,body.motion-none .post-card,body.motion-none .topic-card,body.motion-none .related-card,body.motion-none .project-card,body.motion-none .case-card,body.motion-none .post-art img{transform:none!important;transition:none!important}
+.marquee div{animation:scroll 34s linear infinite!important}.marquee:hover div{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}.marquee div{animation:none!important}.reveal{opacity:1!important;transform:none!important}}
+@media(max-width:760px){.theme-toggle-unified{min-height:32px;padding:7px 10px}}
