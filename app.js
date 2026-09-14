@@ -1,5 +1,5 @@
 const fallback = {
-  site: { name: "Softly, Tam", heroEyebrow: "A quiet corner of the internet", heroTitle: "For the days you are learning to choose yourself.", heroIntro: "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.", profileImage: "", aboutTitle: "Hi, I’m Tam. I write to make life feel a little less lonely.", aboutBody: ["I’m a content writer, curious observer, and lifelong student of what makes us human.", "No perfect routines. Just thoughtful stories and grounded ideas for becoming more at home in your own life."], contactText: "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.", newsletterTitle: "A little pause, delivered gently.", newsletterText: "Occasional notes on being human, finding clarity, and creating a life that feels like yours.", footerTagline: "Thoughtful notes for a gentler, braver life.", email: "", instagram: "" },
+  site: { name: "Softly, Tam", authorName: "Tam Phan", heroEyebrow: "A quiet corner of the internet", heroTitle: "For the days you are learning to choose yourself.", heroIntro: "Honest writing about caring for your mind, building a calmer relationship with money, loving without losing yourself, and growing at your own pace.", profileImage: "", aboutTitle: "Hi, I’m Tam. I write to make life feel a little less lonely.", aboutBody: ["I’m a content writer, curious observer, and lifelong student of what makes us human.", "No perfect routines. Just thoughtful stories and grounded ideas for becoming more at home in your own life."], contactText: "If you have a thoughtful project, a story worth telling, or simply want to say hello, I’d love to hear from you.", newsletterTitle: "A little pause, delivered gently.", newsletterText: "Occasional notes on being human, finding clarity, and creating a life that feels like yours.", footerTagline: "Thoughtful notes for a gentler, braver life.", email: "", instagram: "" },
   topics: [
     {name:"Self-Care", icon:"☼", note:"Rest, rituals & boundaries", color:"#f2c98c"},
     {name:"Money", icon:"◌", note:"Calm, practical finances", color:"#b9cdb7"},
@@ -36,6 +36,7 @@ function renderSite(){
   document.querySelector('meta[property="og:title"]').content=document.title;
   document.querySelector('meta[property="og:description"]').content=description;
   $$('[data-site-name]').forEach(el=>el.textContent=s.name);
+  $$('[data-author-name]').forEach(el=>el.textContent=s.authorName || 'Tam Phan');
   $('[data-hero-eyebrow]').textContent=s.heroEyebrow; $('[data-hero-title]').textContent=s.heroTitle; $('[data-hero-intro]').textContent=s.heroIntro;
   if(s.profileImage){const img=$('[data-profile-image]');img.src=s.profileImage;img.alt=`Portrait of ${s.name}`;img.hidden=false;$('.portrait-placeholder').hidden=true}
   const aboutParts=(s.aboutTitle||'').split('. '); $('[data-about-title]').innerHTML=`${escapeHtml(aboutParts.shift()||'')}.${aboutParts.length?`<br><em>${escapeHtml(aboutParts.join('. '))}</em>`:''}`;
@@ -48,7 +49,7 @@ function renderSite(){
 function renderFeatured(){
   const posts=data.posts||[]; const fi=Math.max(0,posts.findIndex(p=>p.featured)); const p=posts[fi];
   if(!p){$('#featured-post').hidden=true;return}
-  $('#featured-post').innerHTML=`<article class="featured-card reveal">${postArt(p)}<div class="post-copy">${meta(p)}<p class="author-line">By ${escapeHtml(p.author||'Tam Phan')}</p><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}">Read the story →</a></div></article>`;
+  $('#featured-post').innerHTML=`<article class="featured-card reveal">${postArt(p)}<div class="post-copy">${meta(p)}<p class="author-line">By ${escapeHtml(p.author||siteSettings.authorName||'Tam Phan')}</p><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><a class="read-link" href="${postUrl(p)}">Read the story →</a></div></article>`;
 }
 function renderTopics(){
   $('#topic-grid').innerHTML=(data.topics||[]).map(t=>`<a class="topic-card reveal" style="--topic-color:${escapeHtml(t.color||'#dfc4a9')}" href="#journal" data-filter="${escapeHtml(t.name)}"><span class="topic-icon">${escapeHtml(t.icon)}</span><div><h3>${escapeHtml(t.name)}</h3><p>${escapeHtml(t.note)}</p></div></a>`).join('');

@@ -19,6 +19,7 @@ content:
         type: object
         fields:
           - { name: name, label: Website name, type: string, required: true }
+          - { name: authorName, label: Author name, type: string, default: Tam Phan, description: Used on every article and in the footer when a post author is left blank. }
           - { name: heroEyebrow, label: Small line above heading, type: string }
           - { name: heroTitle, label: Main heading, type: text, required: true }
           - { name: heroIntro, label: Short introduction, type: text, required: true }
@@ -50,7 +51,7 @@ content:
             collapsed: true
             summary: "{name}"
         fields:
-          - { name: name, label: Topic name, type: string, required: true }
+          - { name: name, label: Topic name, type: string, required: true, readonly: true }
           - { name: icon, label: Small symbol, type: string }
           - { name: note, label: Short description, type: string }
           - { name: color, label: Topic accent color, type: string }
@@ -88,9 +89,21 @@ content:
             type: string
             list: true
           - name: body
-            label: Article paragraphs
+            label: Legacy paragraphs
             type: text
             list: true
+            description: Existing older posts use this field. For new posts, use the rich content editor below.
+          - name: content
+            label: Article content — add text and images here
+            type: rich-text
+            description: Write and format the full article here. Use the image button inside the editor to upload images anywhere in the article.
+            options:
+              format: html
+              switcher: true
+              media: blog_images
+              path: articles
+              extensions: [jpg, jpeg, png, webp, gif]
+              rename: safe
           - name: image
             label: Cover image
             type: image
@@ -98,5 +111,20 @@ content:
               media: blog_images
               extensions: [jpg, jpeg, png, webp]
               rename: safe
-          - { name: color, label: Placeholder color, type: string }
+          - name: color
+            label: Article accent color
+            type: select
+            description: Used for the card, cover placeholder and article accents.
+            options:
+              values:
+                - { name: "#f2c98c", label: Warm Gold }
+                - { name: "#b9cdb7", label: Sage Green }
+                - { name: "#e7afa8", label: Blush Pink }
+                - { name: "#b8c9db", label: Soft Blue }
+                - { name: "#cbb9d9", label: Lavender }
+                - { name: "#f0b99b", label: Peach }
+                - { name: "#add8c5", label: Mint }
+                - { name: "#d7a1af", label: Dusty Rose }
+                - { name: "#f3d97e", label: Butter Yellow }
+                - { name: "#c96f58", label: Terracotta }
           - { name: featured, label: Featured post, type: boolean }
