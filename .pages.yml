@@ -3,7 +3,7 @@ media:
     label: Blog images
     input: assets/images
     output: /softly-tam/assets/images
-    extensions: [jpg, jpeg, png, webp, gif]
+    extensions: [jpg, jpeg, png, webp, gif, svg]
     categories: [image]
     rename: safe
 
@@ -20,6 +20,22 @@ content:
         fields:
           - { name: name, label: Website name, type: string, required: true }
           - { name: authorName, label: Author name, type: string, default: Tam Phan, description: Used on every article and in the footer when a post author is left blank. }
+          - name: logoImage
+            label: Website logo
+            type: image
+            description: Optional. Upload a logo to replace the default S mark in the header and footer. Delete/clear it any time to return to the default mark.
+            options:
+              media: blog_images
+              extensions: [jpg, jpeg, png, webp, svg]
+              rename: safe
+          - name: favicon
+            label: Browser tab icon / favicon
+            type: image
+            description: Optional. Upload a square icon. Clear it any time to use the default Softly, Tam S icon.
+            options:
+              media: blog_images
+              extensions: [jpg, jpeg, png, webp, svg]
+              rename: safe
           - { name: heroEyebrow, label: Small line above heading, type: string }
           - { name: heroTitle, label: Main heading, type: text, required: true }
           - { name: heroIntro, label: Short introduction, type: text, required: true }
@@ -47,20 +63,35 @@ content:
       - name: topics
         label: Topics
         type: object
+        description: Add, edit, delete or reorder topics. Posts use the category value you choose in each post.
         list:
           min: 1
           collapsible:
             collapsed: true
             summary: "{name}"
         fields:
-          - { name: name, label: Topic name, type: string, required: true, readonly: true }
+          - { name: name, label: Topic name, type: string, required: true }
           - { name: icon, label: Small symbol, type: string }
           - { name: note, label: Short description, type: string }
-          - { name: color, label: Topic accent color, type: string }
+          - name: color
+            label: Topic accent color
+            type: select
+            options:
+              values:
+                - { name: "#f2c98c", label: Warm Gold }
+                - { name: "#b9cdb7", label: Sage Green }
+                - { name: "#e7afa8", label: Blush Pink }
+                - { name: "#b8c9db", label: Soft Blue }
+                - { name: "#cbb9d9", label: Lavender }
+                - { name: "#f0b99b", label: Peach }
+                - { name: "#add8c5", label: Mint }
+                - { name: "#d7a1af", label: Dusty Rose }
+                - { name: "#f3d97e", label: Butter Yellow }
+                - { name: "#c96f58", label: Terracotta }
       - name: posts
         label: Journal posts
         type: object
-        description: Add a post with Add item. Open any existing post to edit it, use the trash button to delete it, or drag posts to reorder them. Only one post should be marked Featured.
+        description: Add a post with Add item. Open any existing post to edit it, use the trash button to delete it, or drag posts to reorder them. The website calculates reading time automatically from the article text. Only one post should be marked Featured.
         list:
           min: 1
           collapsible:
@@ -76,14 +107,13 @@ content:
           - { name: author, label: Author, type: string, default: Tam Phan }
           - name: category
             label: Category
-            type: select
-            options:
-              values: [Self-Care, Money, Love, Psychology, Real Life]
+            type: string
+            description: Enter the topic name exactly as it appears in Topics, for example Self-Care or Money. This keeps topics flexible so you can add new ones later.
             required: true
           - name: date
             label: Published date
             type: date
-            description: New posts automatically start with today's date. You can change it before or after publishing.
+            description: New posts can use today's date; you can also change it before or after publishing.
             options:
               format: yyyy-MM-dd
           - name: readTime
