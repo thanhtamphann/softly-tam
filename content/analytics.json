@@ -1,7 +1,7 @@
 {
-  "enabled": false,
+  "enabled": true,
   "provider": "ga4",
-  "measurementId": "",
+  "measurementId": "G-DVDHHN1T6P",
   "trackPageViews": true,
   "trackArticleProgress": true,
   "trackEngagedReaders": true,
