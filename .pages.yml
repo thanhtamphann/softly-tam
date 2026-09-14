@@ -58,7 +58,7 @@ content:
       - name: posts
         label: Journal posts
         type: object
-        description: Add, remove or drag posts to reorder them. Only one post should be marked Featured.
+        description: Add a post with Add item. Open any existing post to edit it, use the trash button to delete it, or drag posts to reorder them. Only one post should be marked Featured.
         list:
           min: 1
           collapsible:
@@ -78,8 +78,17 @@ content:
             options:
               values: [Self-Care, Money, Love, Psychology, Real Life]
             required: true
-          - { name: date, label: Published date, type: string }
-          - { name: readTime, label: Reading time, type: string }
+          - name: date
+            label: Published date
+            type: date
+            description: New posts automatically start with today's date. You can change it before or after publishing.
+            options:
+              format: yyyy-MM-dd
+          - name: readTime
+            label: Reading time
+            type: string
+            hidden: true
+            description: Calculated automatically from the article content on the website.
           - { name: excerpt, label: Card summary, type: text, required: true }
           - { name: seoDescription, label: Google and social description, type: text }
           - { name: lead, label: Opening sentence, type: text }
